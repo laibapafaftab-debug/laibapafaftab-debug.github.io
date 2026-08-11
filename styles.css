@@ -816,3 +816,62 @@ button { font: inherit; }
   .services, .process, .why-us, .faq, .contact { padding: 56px 0; }
   .contact-form { padding: 22px; }
 }
+/* Contact Section */
+.contact {
+    margin-top: 80px;
+    padding: 60px 40px;
+    border-radius: 20px;
+    background: var(--paper-raised);
+}
+
+.contact h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    color: var(--text-dim);
+    margin-bottom: 35px;
+}
+
+.contact form {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background: white;
+}
+
+.contact textarea {
+    height: 150px;
+    resize: none;
+}
+
+.contact button {
+    width: fit-content;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #12151c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    opacity: 0.8;
+}
