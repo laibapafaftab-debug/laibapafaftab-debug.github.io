@@ -136,6 +136,31 @@
   .btn-ghost{border:1px solid var(--border-strong); color:var(--text);}
   .btn-ghost:hover{background:var(--surface-alt); transform:translateY(-2px);}
 
+  /* CURRENCY BADGE STYLING */
+  .currency-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .currency-tag strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .currency-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+  }
+
   .hero-photo-wrap{position:relative; justify-self:center;}
   .hero-photo-frame{
     width:300px; height:340px; border-radius:26px; overflow:hidden; position:relative;
@@ -153,7 +178,6 @@
     box-shadow:0 14px 30px rgba(0,0,0,0.4);
   }
   .float-card.top{top:-18px; right:-30px; color:var(--teal);}
-  .float-card.bottom{bottom:-20px; left:-38px; color:var(--gold);}
   @media(max-width:900px){
     .hero{grid-template-columns:1fr; padding-top:140px;}
     .hero-photo-wrap{order:-1; margin-bottom:10px;}
@@ -318,7 +342,7 @@
   .footer-about p{color:var(--text-dim); font-size:14px; margin:16px 0 22px; max-width:280px;}
   .social-row{display:flex; gap:10px;}
   .social-row a{
-    width:36px; height:36px; border-radius:9px; border:1px solid var(--border-strong);
+    width:36px; height:36px; border-radius:99px; border:1px solid var(--border-strong);
     display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--text-dim);
     transition:color .2s, border-color .2s;
   }
@@ -365,17 +389,23 @@
       <h1>Websites &amp; Python builds<br>your customers <span>actually trust.</span></h1>
       <div class="hero-role mono">I'm Laiba Aftab — Web &amp; Python Developer<span class="cursor"></span></div>
       <p class="lede">A small studio designing fast, responsive, conversion-focused websites and automation tools for local and international businesses — from first sketch to launch.</p>
+      
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Get a free quote →</a>
         <a href="#work" class="btn btn-ghost">See recent work</a>
       </div>
+
+      <!-- UPDATED CURRENCY BADGE UNDER BUTTONS -->
+      <div class="currency-tag mono">
+        <span class="currency-dot"></span> Multi-currency accepted: <strong>PKR • USD • GBP</strong>
+      </div>
     </div>
+
     <div class="hero-photo-wrap">
       <div class="hero-photo-frame">  
         <img src="my-profile.jpg" alt="Laiba Aftab">
       </div>
       <div class="float-card top">10–21 day<br>turnaround</div>
-      <div class="float-card bottom">PKR · USD · GBP</div>
     </div>
   </section>
 
@@ -664,27 +694,15 @@
         <ul>
           <li><a href="mailto:laibapafaftab@gmail.com">laibapafaftab@gmail.com</a></li>
           <li><a href="tel:+923248957840">+92 324 8957840</a></li>
-          <li><a href="#" style="pointer-events:none;">Based in Pakistan</a></li>
-          <li><a href="https://wa.me/923248957840" style="color:var(--teal);">WhatsApp Me →</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Laiba Aftab. All rights reserved.</span>
-      <span>Mon–Sat · Available for Freelance</span>
+      <div>&copy; 2026 Laiba Aftab. All rights reserved.</div>
+      <div>Designed &amp; Developed by Laiba Aftab</div>
     </div>
   </div>
 </footer>
-
-<script>
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-  },{threshold:0.15});
-  document.querySelectorAll('section, .service-card, .project-card, .testi-card').forEach(el=>{
-    el.classList.add('reveal');
-    io.observe(el);
-  });
-</script>
 
 </body>
 </html>
