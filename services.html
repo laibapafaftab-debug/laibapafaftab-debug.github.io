@@ -48,6 +48,15 @@
         radial-gradient(ellipse 700px 500px at 5% 15%, rgba(212,162,76,0.08), transparent 60%);
       pointer-events: none; z-index: 0;
     }
+
+    /* Particle Background Canvas */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
     .mono { font-family: 'JetBrains Mono', monospace; }
     a { color: inherit; text-decoration: none; }
@@ -168,7 +177,7 @@
     .btn-ghost:hover { background: var(--surface-alt); transform: translateY(-2px); }
 
     /* ---------- FOOTER ---------- */
-    footer { border-top: 1px solid var(--border); padding: 60px 0 30px; background: var(--bg-alt); }
+    footer { border-top: 1px solid var(--border); padding: 60px 0 30px; background: var(--bg-alt); position: relative; z-index: 1; }
     .footer-bottom {
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
       font-size: 13px; color: var(--text-faint); max-width: var(--maxw); margin: 0 auto; padding: 0 28px;
@@ -241,87 +250,11 @@
     }
     .scroll-progress .dot-center { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 8px var(--teal); }
     @media(max-width:900px){ .scroll-progress { display: none; } }
-    #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-.scroll-top {
-  position: fixed; right: 26px; bottom: 96px; z-index: 90;
-  width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer;
-  background: linear-gradient(135deg, var(--teal), var(--gold));
-  color: #0a0f1c; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 10px 26px rgba(79, 209, 197, 0.35);
-  opacity: 0; visibility: hidden; transform: translateY(10px);
-  transition: opacity .25s, visibility .25s, transform .25s, box-shadow .2s;
-}
-.scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-.scroll-top:hover { box-shadow: 0 14px 32px rgba(79, 209, 197, 0.5); transform: translateY(-2px); }
-.scroll-top svg { width: 22px; height: 22px; }
-@media(max-width:600px){ .scroll-top { right: 18px; bottom: 84px; width: 44px; height: 44px; } }
   </style>
 </head>
-  <button type="button" class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
-
-<script>
-  (function () {
-    var canvas = document.getElementById('bg-canvas');
-    var ctx = canvas.getContext('2d');
-    var w, h, particles;
-    var mouse = { x: null, y: null };
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-    function initParticles() {
-      var count = Math.min(70, Math.floor((w * h) / 18000));
-      particles = [];
-      for (var i = 0; i < count; i++) {
-        particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35, r: Math.random() * 1.6 + 1 });
-      }
-    }
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-        if (mouse.x !== null) {
-          var dx = p.x - mouse.x, dy = p.y - mouse.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            var force = (130 - dist) / 130;
-            p.x += (dx / dist) * force * 1.2;
-            p.y += (dy / dist) * force * 1.2;
-          }
-        }
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(79, 209, 197, 0.55)'; ctx.fill();
-        for (var j = i + 1; j < particles.length; j++) {
-          var q = particles[j];
-          var ddx = p.x - q.x, ddy = p.y - q.y;
-          var d = Math.sqrt(ddx * ddx + ddy * ddy);
-          if (d < 120) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = 'rgba(212, 162, 76, ' + (0.12 * (1 - d / 120)) + ')';
-            ctx.lineWidth = 1; ctx.stroke();
-          }
-        }
-      }
-      if (!reduceMotion) requestAnimationFrame(draw);
-    }
-    resize(); initParticles(); draw();
-    window.addEventListener('resize', function () { resize(); initParticles(); });
-    window.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
-    window.addEventListener('mouseleave', function () { mouse.x = null; mouse.y = null; });
-  })();
-
-  var scrollBtn = document.getElementById('scrollTopBtn');
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 400) scrollBtn.classList.add('visible');
-    else scrollBtn.classList.remove('visible');
-  });
-  scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-</script>
 <body>
-  <canvas id="bg-canvas"></canvas>
+
+<canvas id="bg-canvas"></canvas>
 
 <div id="preloader">
   <div class="preloader-logo">Laiba.tech</div>
@@ -557,6 +490,7 @@
 </div>
 
 <script>
+  /* Preloader & Scroll Logic */
   window.addEventListener('load', function () {
     var pre = document.getElementById('preloader');
     setTimeout(function () { pre.classList.add('hidden'); }, 500);
@@ -575,6 +509,83 @@
     progressFill.style.strokeDashoffset = circumference - (progress * circumference);
   });
   scrollBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  /* Interactive Particle Network Animation */
+  (function () {
+    var canvas = document.getElementById('bg-canvas');
+    var ctx = canvas.getContext('2d');
+    var w, h, particles;
+    var mouse = { x: null, y: null };
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    function initParticles() {
+      var count = Math.min(70, Math.floor((w * h) / 18000));
+      particles = [];
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.6 + 1
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        if (mouse.x !== null) {
+          var dx = p.x - mouse.x, dy = p.y - mouse.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            var force = (130 - dist) / 130;
+            p.x += (dx / dist) * force * 1.2;
+            p.y += (dy / dist) * force * 1.2;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(79, 209, 197, 0.55)';
+        ctx.fill();
+
+        for (var j = i + 1; j < particles.length; j++) {
+          var q = particles[j];
+          var ddx = p.x - q.x, ddy = p.y - q.y;
+          var d = Math.sqrt(ddx * ddx + ddy * ddy);
+          if (d < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = 'rgba(212, 162, 76, ' + (0.12 * (1 - d / 120)) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+
+    resize();
+    initParticles();
+    draw();
+
+    window.addEventListener('resize', function () { resize(); initParticles(); });
+    window.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseleave', function () { mouse.x = null; mouse.y = null; });
+  })();
 </script>
 
 </body>
