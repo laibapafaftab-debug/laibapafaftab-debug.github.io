@@ -57,6 +57,18 @@
       pointer-events: none;
       z-index: 0;
     }
+
+    /* BACKGROUND CANVAS STYLING */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
     .mono { font-family: 'JetBrains Mono', monospace; }
     a { color: inherit; text-decoration: none; }
@@ -94,7 +106,7 @@
     nav.links a:hover { color: var(--text); }
     .nav-cta {
       font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      padding: 10px 18px; border-radius: 9px;
+      padding: 10px 18px; border-radius: 99px;
       background: var(--gold); color: #1a1206; font-weight: 500;
       transition: transform .2s, box-shadow .2s;
     }
@@ -156,17 +168,6 @@
       content: ""; position: absolute; inset: 0;
       background: linear-gradient(180deg, transparent 60%, rgba(10,15,28,0.7));
     }
-    .float-card {
-      position: absolute; background: var(--surface); border: 1px solid var(--border-strong);
-      border-radius: 12px; padding: 12px 16px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.4);
-    }
-    .float-card.top { top: -18px; right: -30px; color: var(--teal); }
-    @media(max-width:900px){
-      .hero { grid-template-columns: 1fr; padding-top: 140px; }
-      .hero-photo-wrap { order: -1; margin-bottom: 10px; }
-      .float-card { display: none; }
-    }
 
     /* ---------- TERMINAL STATS ---------- */
     .stats-band { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-alt); }
@@ -202,9 +203,6 @@
     .service-card p { color: var(--text-dim); font-size: 14.5px; }
     @media(max-width:900px){ .services-grid { grid-template-columns: 1fr 1fr; } }
     @media(max-width:600px){ .services-grid { grid-template-columns: 1fr; } }
-    .link-arrow { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-weight: 600; font-size: 15px; }
-    .link-arrow svg { transition: transform .2s; }
-    .link-arrow:hover svg { transform: translateX(4px); }
 
     /* ---------- PROCESS ---------- */
     .process-band { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -222,164 +220,6 @@
       .process-step:not(:last-child)::after { display: none; }
     }
     @media(max-width:560px){ .process-grid { grid-template-columns: 1fr; } }
-
-    /* ---------- PROJECTS ---------- */
-    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: transform .25s, border-color .25s;
-    }
-    .project-card:hover { transform: translateY(-5px); border-color: var(--border-strong); }
-    .project-thumb {
-      height: 150px; display: flex; align-items: center; justify-content: center;
-      font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-faint);
-      background:
-        repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 14px),
-        linear-gradient(135deg, var(--surface-alt), var(--bg-alt));
-      border-bottom: 1px solid var(--border);
-    }
-    .project-body { padding: 22px 24px 26px; }
-    .project-tag {
-      display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
-      color: var(--gold); background: var(--gold-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
-    }
-    .project-card h3 { font-size: 18px; margin-bottom: 8px; }
-    .project-card p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tech-tags span { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-dim); border: 1px solid var(--border-strong); padding: 3px 9px; border-radius: 6px; }
-    @media(max-width:900px){ .projects-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:600px){ .projects-grid { grid-template-columns: 1fr; } }
-
-    /* ---------- CASE STUDY ---------- */
-    .case-study {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-      padding: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-    }
-    .case-study .eyebrow { margin-bottom: 14px; }
-    .case-study h3 { font-size: 26px; margin-bottom: 16px; max-width: 440px; }
-    .case-study p { color: var(--text-dim); font-size: 15px; margin-bottom: 20px; }
-    .case-list { list-style: none; }
-    .case-list li {
-      position: relative; padding-left: 22px; margin-bottom: 10px; color: var(--text-dim); font-size: 14.5px;
-    }
-    .case-list li::before { content: "→"; position: absolute; left: 0; color: var(--teal); }
-    .case-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .metric { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .metric .num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--teal); }
-    .metric .label { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
-    @media(max-width:860px){ .case-study { grid-template-columns: 1fr; padding: 32px; } }
-
-    /* ---------- TESTIMONIALS ---------- */
-    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .testi-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; }
-    .testi-card p.quote { font-size: 16px; margin-bottom: 22px; color: var(--text); }
-    .testi-who { display: flex; align-items: center; gap: 12px; }
-    .testi-avatar {
-      width: 38px; height: 38px; border-radius: 50%; background: var(--gold-soft); color: var(--gold);
-      display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
-    }
-    .testi-who .name { font-size: 14.5px; font-weight: 600; }
-    .testi-who .role { font-size: 13px; color: var(--text-dim); }
-    @media(max-width:700px){ .testi-grid { grid-template-columns: 1fr; } }
-
-    /* ---------- PRICING ---------- */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .price-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 32px 28px; display: flex; flex-direction: column;
-    }
-    .price-card.featured { border-color: var(--gold); background: linear-gradient(180deg, var(--surface-alt), var(--surface)); position: relative; }
-    .price-card.featured::before {
-      content: "Most popular"; position: absolute; top: -13px; left: 28px;
-      background: var(--gold); color: #1a1206; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
-      padding: 4px 12px; border-radius: 999px;
-    }
-    .price-card h3 { font-size: 19px; margin-bottom: 6px; }
-    .price-amt { font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 700; margin: 14px 0 2px; }
-    .price-pkr { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--text-dim); margin-bottom: 22px; }
-    .price-card ul { list-style: none; margin-bottom: 26px; flex: 1; }
-    .price-card li { position: relative; padding-left: 22px; margin-bottom: 11px; font-size: 14.5px; color: var(--text-dim); }
-    .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 600; }
-    @media(max-width:900px){ .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } }
-
-    /* ---------- CTA BAND ---------- */
-    .cta-band {
-      background: linear-gradient(120deg, var(--surface-alt), var(--bg-alt));
-      border: 1px solid var(--border); border-radius: 24px;
-      padding: 64px 56px; text-align: center; position: relative; overflow: hidden;
-    }
-    .cta-band::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(79,209,197,0.14), transparent 60%);
-    }
-    .cta-band h2 { font-size: clamp(26px, 4vw, 38px); margin-bottom: 16px; position: relative; }
-    .cta-band p { color: var(--text-dim); max-width: 480px; margin: 0 auto 30px; position: relative; }
-    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
-
-    /* ---------- CONTACT FORM ---------- */
-    .contact-section { text-align: center; }
-    .contact-section .section-title,
-    .contact-section .section-sub { margin-left: auto; margin-right: auto; }
-    .contact-section .section-sub { margin-bottom: 44px; }
-    .contact-form {
-      max-width: 560px; margin: 0 auto; text-align: left;
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 36px;
-      display: flex; flex-direction: column; gap: 18px;
-    }
-    .contact-form label {
-      font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
-      letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim);
-      margin-bottom: 8px; display: block;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%; background: var(--bg-alt); border: 1px solid var(--border-strong);
-      border-radius: 10px; padding: 13px 16px; color: var(--text);
-      font-family: 'Inter', sans-serif; font-size: 14.5px;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder { color: var(--text-faint); }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none; border-color: var(--teal);
-      box-shadow: 0 0 0 3px var(--teal-soft);
-    }
-    .contact-form textarea { min-height: 130px; resize: vertical; }
-    .contact-form button {
-      align-self: flex-start; margin-top: 6px;
-      font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 15px;
-      padding: 14px 28px; border-radius: 10px; border: none; cursor: pointer;
-      background: var(--gold); color: #1a1206;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .contact-form button:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(212, 162, 76, 0.3); }
-    @media(max-width:600px){ .contact-form { padding: 26px 22px; } }
-
-    /* ---------- FOOTER ---------- */
-    footer { border-top: 1px solid var(--border); padding: 70px 0 30px; background: var(--bg-alt); }
-    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 54px; }
-    .footer-about p { color: var(--text-dim); font-size: 14px; margin: 16px 0 22px; max-width: 280px; }
-    .social-row { display: flex; gap: 10px; }
-    .social-row a {
-      width: 36px; height: 36px; border-radius: 99px; border: 1px solid var(--border-strong);
-      display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-dim);
-      transition: color .2s, border-color .2s;
-    }
-    .social-row a:hover { color: var(--teal); border-color: var(--teal); }
-    .footer-col h5 { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 18px; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 11px; }
-    .footer-col a { color: var(--text-dim); font-size: 14.5px; transition: color .2s; }
-    .footer-col a:hover { color: var(--text); }
-    .footer-bottom {
-      border-top: 1px solid var(--border); padding-top: 26px;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-      font-size: 13px; color: var(--text-faint);
-    }
-    @media(max-width:900px){ .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 36px; } }
-    @media(max-width:560px){ .footer-grid { grid-template-columns: 1fr; } }
 
     /* ---------- LOADING SCREEN ---------- */
     #preloader {
@@ -408,70 +248,12 @@
     }
     @keyframes fadeInLogo { to { opacity: 1; } }
     @keyframes loadSweep { 0% { left: -40%; } 100% { left: 100%; } }
-    @media (prefers-reduced-motion: reduce) {
-      #preloader { transition: none; }
-      .preloader-logo, .preloader-bar { animation: none; opacity: 1; }
-      .preloader-bar::after { animation: none; }
-    }
-
-    /* ---------- FLOATING WHATSAPP BUTTON ---------- */
-    .wa-float {
-      position: fixed; right: 26px; bottom: 26px; z-index: 90;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: #25D366; color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 10px 26px rgba(37, 211, 102, 0.4);
-      animation: waFloat 2.6s ease-in-out infinite;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .wa-float:hover { transform: scale(1.08); box-shadow: 0 14px 32px rgba(37, 211, 102, 0.55); }
-    .wa-float svg { width: 28px; height: 28px; }
-    @keyframes waFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    @media (prefers-reduced-motion: reduce) { .wa-float { animation: none; } }
-    @media(max-width:600px){ .wa-float { right: 18px; bottom: 18px; width: 52px; height: 52px; } }
-
-    /* ---------- SCROLL TO TOP BUTTON ---------- */
-    .scroll-top {
-      position: fixed; right: 26px; bottom: 96px; z-index: 90;
-      width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer;
-      background: linear-gradient(135deg, var(--teal), var(--gold));
-      color: #0a0f1c;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 10px 26px rgba(79, 209, 197, 0.35);
-      opacity: 0; visibility: hidden; transform: translateY(10px);
-      transition: opacity .25s, visibility .25s, transform .25s, box-shadow .2s;
-    }
-    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-    .scroll-top:hover { box-shadow: 0 14px 32px rgba(79, 209, 197, 0.5); transform: translateY(-2px); }
-    .scroll-top svg { width: 22px; height: 22px; }
-    @media(max-width:600px){ .scroll-top { right: 18px; bottom: 84px; width: 44px; height: 44px; } }
-
-    /* ---------- SCROLL PROGRESS CIRCLE ---------- */
-    .scroll-progress {
-      position: fixed; top: 50%; left: 22px; transform: translateY(-50%);
-      z-index: 90; width: 42px; height: 42px;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
-    }
-    .scroll-progress.visible { opacity: 1; visibility: visible; }
-    .scroll-progress svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .scroll-progress .track { fill: none; stroke: var(--border-strong); stroke-width: 3; }
-    .scroll-progress .fill {
-      fill: none; stroke: var(--teal); stroke-width: 3; stroke-linecap: round;
-      stroke-dasharray: 113; stroke-dashoffset: 113;
-      transition: stroke-dashoffset .1s linear;
-    }
-    .scroll-progress .dot-center {
-      position: absolute; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--teal); box-shadow: 0 0 8px var(--teal);
-    }
-    @media(max-width:900px){ .scroll-progress { display: none; } }
   </style>
 </head>
 <body>
+
+<!-- BACKGROUND CANVAS FOR PARTICLES -->
+<canvas id="bg-canvas"></canvas>
 
 <div id="preloader">
   <div class="preloader-logo">Laiba.tech</div>
@@ -494,6 +276,7 @@
     <a href="#contact" class="nav-cta">Start a project</a>
   </div> 
 </header>
+
 <main class="wrap">
   <!-- HERO -->
   <section class="hero" id="top">
@@ -507,13 +290,11 @@
         <a href="#contact" class="btn btn-primary">Get a free quote →</a>
         <a href="#work" class="btn btn-ghost">See recent work</a>
       </div>
-        <div class="currency-tag mono">
-  <span class="currency-dot"></span> 10–21 days turnaround • Multi-currency accepted: <strong>PKR • USD • GBP</strong>
-</div>
+      <div class="currency-tag mono">
+        <span class="currency-dot"></span> 10–21 days turnaround • Multi-currency accepted: <strong>PKR • USD • GBP</strong>
       </div>
     </div>
 
-    <!-- CLEAN SINGLE PHOTO CONTAINER -->
     <div class="hero-photo-wrap">
       <div class="hero-photo-frame">  
         <img src="my-profile.jpg" alt="Laiba Aftab">
@@ -592,7 +373,6 @@
         <p>Scripts, tools and small applications that take repetitive work off your plate — built around how your business actually runs.</p>
       </div>
     </div>
-    <a href="https://www.linkedin.com/in/laiba-aftab-211705420/" class="link-arrow" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </section>
 
   <!-- PROCESS -->
@@ -625,270 +405,69 @@
       </div>
     </div>
   </section>
-
-  <!-- PROJECTS -->
-  <section id="work">
-    <div class="eyebrow">Selected work</div>
-    <h2 class="section-title">Recent projects</h2>
-    <p class="section-sub">A few examples of the kind of work I do.</p>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-thumb">salon-booking/</div>
-        <div class="project-body">
-          <span class="project-tag">Local business</span>
-          <h3>Salon booking website</h3>
-          <p>Service listing, booking form, and gallery for a beauty salon in Lahore.</p>
-          <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-thumb">consulting-site/</div>
-        <div class="project-body">
-          <span class="project-tag">International client</span>
-          <h3>Consulting firm site</h3>
-          <p>Multi-page site with case studies and a contact funnel for a UK-based consultancy.</p>
-          <div class="tech-tags"><span>HTML</span><span>CSS</span><span>SEO</span></div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-thumb">python-game/</div>
-        <div class="project-body">
-          <span class="project-tag">Python project</span>
-          <h3>Python game</h3>
-          <p>A game built in Python, showcasing logic-building and problem-solving skills alongside web development.</p>
-          <div class="tech-tags"><span>Python</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASE STUDY -->
-  <section>
-    <div class="eyebrow">Case study</div>
-    <h2 class="section-title" style="margin-bottom:44px;">From outdated to converting</h2>
-    <div class="case-study">
-      <div>
-        <div class="eyebrow" style="margin-bottom:10px;">Salon business — Lahore</div>
-        <h3>Rebuilding a booking site that customers could actually use on mobile</h3>
-        <p>The old site was slow, hard to navigate on phones, and had no clear way for customers to book. We rebuilt it from scratch around one goal: make booking effortless.</p>
-        <ul class="case-list">
-          <li>Mobile-first redesign, tested across real devices</li>
-          <li>Simplified booking form with WhatsApp fallback</li>
-          <li>Page speed optimized for slower connections</li>
-          <li>Clear service listing with pricing up front</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Start a similar project</a>
-      </div>
-      <div class="case-metrics">
-        <div class="metric"><div class="num">2.1s</div><div class="label">Average load time, down from 7.8s</div></div>
-        <div class="metric"><div class="num">3x</div><div class="label">More booking form submissions</div></div>
-        <div class="metric"><div class="num">100%</div><div class="label">Mobile-friendly on all core pages</div></div>
-        <div class="metric"><div class="num">14 days</div><div class="label">From kickoff to launch</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section>
-    <div class="eyebrow">Client feedback</div>
-    <h2 class="section-title" style="margin-bottom:44px;">What clients say</h2>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <p class="quote">"Delivered exactly what we asked for, on time, and explained everything clearly along the way. No jargon, just results."</p>
-        <div class="testi-who">
-          <div class="testi-avatar">AK</div>
-          <div><div class="name">Ayesha K.</div><div class="role">Salon owner, Lahore</div></div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <p class="quote">"Communication across time zones was smooth and the final site loads noticeably faster than our old one."</p>
-        <div class="testi-who">
-          <div class="testi-avatar">MR</div>
-          <div><div class="name">Michael R.</div><div class="role">Consultant, United Kingdom</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="eyebrow">Pricing</div>
-    <h2 class="section-title">Simple, fixed-price packages</h2>
-    <p class="section-sub">Every project is quoted up front. These are starting points — final pricing depends on scope.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Starter</h3>
-        <div class="price-amt">$150</div>
-        <div class="price-pkr">≈ PKR 42,000 · best for a simple presence</div>
-        <ul>
-          <li>Single-page website</li>
-          <li>Mobile responsive</li>
-          <li>Contact form</li>
-          <li>1 round of revisions</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost">Select Starter</a>
-      </div>
-      <div class="price-card featured">
-        <h3>Business</h3>
-        <div class="price-amt">$350</div>
-        <div class="price-pkr">≈ PKR 98,000 · most popular</div>
-        <ul>
-          <li>Up to 5 pages</li>
-          <li>Mobile + tablet + desktop tested</li>
-          <li>Contact form + WhatsApp link</li>
-          <li>Basic SEO setup</li>
-          <li>2 rounds of revisions</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Choose Business</a>
-      </div>
-      <div class="price-card">
-        <h3>E-commerce</h3>
-        <div class="price-amt">From $600</div>
-        <div class="price-pkr">≈ PKR 168,000 · scoped after call</div>
-        <ul>
-          <li>Full online store</li>
-          <li>Product &amp; checkout setup</li>
-          <li>Local + international payments</li>
-          <li>Launch support included</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost">Select E-commerce</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section>
-    <div class="cta-band">
-      <h2>Ready to build something that actually converts?</h2>
-      <p>Let's talk through your business and scope a fast, mobile-first site your customers will trust.</p>
-      <div class="cta-buttons">
-        <a href="#contact" class="btn btn-primary">Get In Touch</a>
-        <a href="https://wa.me/923248957840?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20project" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT FORM -->
-  <section id="contact" class="contact-section">
-    <div class="eyebrow" style="justify-content:center;">Get in touch</div>
-    <h2 class="section-title">Let's Work Together</h2>
-    <p class="section-sub">Have a project in mind? Send me a message.</p>
-
-    <form class="contact-form" action="https://formspree.io/f/xnpadpav" method="POST">
-      <div>
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" placeholder="Your Name" required>
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" placeholder="Your Email" required>
-      </div>
-      <div>
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-      </div>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
 </main>
 
-<!-- FOOTER -->
-<footer id="contact-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <div class="logo"><span class="dot"></span>Laiba<span class="mono" style="color:var(--text-dim); font-weight:400;">.dev</span></div>
-        <p>Web development studio specializing in fast, conversion-focused sites for small businesses — plus Python automation and tooling. Based in Pakistan, working with clients worldwide.</p>
-        <div class="social-row">
-          <a href="https://www.linkedin.com/in/laiba-aftab-211705420/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">in</a>
-          <a href="https://github.com/laibapafaftab-debug" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">gh</a>
-          <a href="https://wa.me/923248957840" aria-label="WhatsApp Contact" target="_blank" rel="noopener noreferrer">wa</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Quick Links</h5>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="#services">Web Development</a></li>
-          <li><a href="#services">Landing Pages</a></li>
-          <li><a href="#services">E-commerce Setup</a></li>
-          <li><a href="#services">Python Automation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Get In Touch</h5>
-        <ul>
-          <li><a href="mailto:laibapafaftab@gmail.com">laibapafaftab@gmail.com</a></li>
-          <li><a href="https://wa.me/923248957840" target="_blank" rel="noopener noreferrer">WhatsApp Direct</a></li>
-          <li><a href="https://www.linkedin.com/in/laiba-aftab-211705420/" target="_blank" rel="noopener noreferrer">LinkedIn DM</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>&copy; 2026 Laiba Aftab. All rights reserved.</div>
-      <div class="mono">Built with HTML &amp; CSS</div>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/923248957840?text=Hi%2C%20I%27m%20interested%20in%20a%20website%20project" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.892.526 3.7 1.523 5.28L2 22l4.865-1.485A9.943 9.943 0 0 0 12.001 22C17.523 22 22 17.522 22 12S17.523 2 12.001 2zm0 18.09a8.07 8.07 0 0 1-4.383-1.283l-.314-.19-3.09.943.951-3.04-.204-.324A8.09 8.09 0 1 1 20.09 12a8.098 8.098 0 0 1-8.089 8.09z"/></svg>
-</a>
-
-<button type="button" class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
-
-<div class="scroll-progress" id="scrollProgress">
-  <svg viewBox="0 0 42 42">
-    <circle class="track" cx="21" cy="21" r="18"></circle>
-    <circle class="fill" id="scrollProgressFill" cx="21" cy="21" r="18"></circle>
-  </svg>
-  <div class="dot-center"></div>
-</div>
-
+<!-- BACKGROUND ANIMATION & PRELOADER SCRIPT -->
 <script>
-  window.addEventListener('load', function () {
-    var pre = document.getElementById('preloader');
-    setTimeout(function () { pre.classList.add('hidden'); }, 500);
+  window.addEventListener('load', function() {
+    var preloader = document.getElementById('preloader');
+    if (preloader) preloader.classList.add('hidden');
   });
 
-  var scrollBtn = document.getElementById('scrollTopBtn');
-  var progressWrap = document.getElementById('scrollProgress');
-  var progressFill = document.getElementById('scrollProgressFill');
-  var circumference = 113;
+  (function () {
+    var canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var w, h, particles;
 
-  window.addEventListener('scroll', function () {
-    if (window.scrollY > 400) {
-      scrollBtn.classList.add('visible');
-    } else {
-      scrollBtn.classList.remove('visible');
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
     }
 
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var progress = docHeight > 0 ? (window.scrollY / docHeight) : 0;
-
-    if (window.scrollY > 100) {
-      progressWrap.classList.add('visible');
-    } else {
-      progressWrap.classList.remove('visible');
+    function initParticles() {
+      particles = [];
+      var count = Math.floor((w * h) / 18000);
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 1.5 + 1,
+          alpha: Math.random() * 0.5 + 0.2
+        });
+      }
     }
 
-    var offset = circumference - (progress * circumference);
-    progressFill.style.strokeDashoffset = offset;
-  });
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(function (p) {
+        p.x += p.vx;
+        p.y += p.vy;
 
-  scrollBtn.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        ctx.fillStyle = 'rgba(79, 209, 197, ' + p.alpha + ')';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    initParticles();
+    draw();
+
+    window.addEventListener('resize', function () {
+      resize();
+      initParticles();
+    });
+  })();
 </script>
 
 </body>
