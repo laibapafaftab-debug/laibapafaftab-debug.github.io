@@ -167,5 +167,7 @@
   /* -------------------- Footer year -------------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-
+document.querySelectorAll("img").forEach(img => {
+    img.src = "profile.jpg";
+  });
 })();
