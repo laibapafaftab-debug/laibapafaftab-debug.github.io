@@ -158,6 +158,136 @@
     .scroll-top:hover { box-shadow: 0 14px 32px rgba(79,209,197,0.5); transform: translateY(-2px); }
     .scroll-top svg { width:22px; height:22px; }
     @media(max-width:600px){ .scroll-top { right:18px; bottom:84px; width:44px; height:44px; } }
+    /* PROJECTS GRID SECTION */
+.projects-section {
+  padding-top: 60px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 30px rgba(79, 209, 197, 0.15);
+}
+
+.project-img-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: var(--surface-alt);
+  overflow: hidden;
+}
+
+.project-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-img-box img {
+  transform: scale(1.05);
+}
+
+/* Hover Buttons Overlay */
+.project-actions {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 28, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-demo {
+  background: var(--teal);
+  color: #0a0f1c;
+}
+
+.btn-github {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+}
+
+/* Card Body */
+.project-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-body h3 {
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.project-body p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+/* Tech Stack Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tags span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--teal-soft);
+  color: var(--teal);
+  border: 1px solid rgba(79, 209, 197, 0.2);
+}
   </style>
 </head>
 <body>
@@ -307,6 +437,76 @@
         <a href="home.html#contact" class="btn btn-primary">Get In Touch</a>
       </div>
     </div>
+    <!-- FEATURED PROJECTS SECTION -->
+  <section class="projects-section">
+    <div class="eyebrow">Portfolio</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <p class="section-sub">A selection of real-world projects delivered with quality, performance, and responsive design.</p>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-img-box">
+          <img src="project-showcase.png" alt="Coffee Heaven Web App">
+          <div class="project-actions">
+            <a href="https://laibapafaftab-debug.github.io/Coffee-Heaven/" target="_blank" class="action-btn btn-demo">🔗 Live Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" class="action-btn btn-github">💻 GitHub</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Coffee Heaven Web App</h3>
+          <p>Modern responsive landing page for a coffee shop featuring dark UI, interactive menu, and clean layout design.</p>
+          <div class="project-tags">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-img-box">
+          <img src="project-showcase.png" alt="2D Car Dodging Game">
+          <div class="project-actions">
+            <a href="#" class="action-btn btn-demo">🔗 Play Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" class="action-btn btn-github">💻 GitHub</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>2D Python Dodging Game</h3>
+          <p>Arcade-style car dodging game built using Python & Pygame with dynamic enemy spawning, score tracking, and collision detection.</p>
+          <div class="project-tags">
+            <span>Python</span>
+            <span>Pygame</span>
+            <span>OOP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-img-box">
+          <img src="project-showcase.png" alt="Services & Portfolio Suite">
+          <div class="project-actions">
+            <a href="services.html" class="action-btn btn-demo">🔗 Live Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" class="action-btn btn-github">💻 GitHub</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>Multi-Page Developer Portfolio</h3>
+          <p>Fast, high-converting portfolio with active navigation tabs, dark neon styling, and integrated contact options.</p>
+          <div class="project-tags">
+            <span>HTML5</span>
+            <span>CSS Flex/Grid</span>
+            <span>UI/UX</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
   </section>
 </main>
 
