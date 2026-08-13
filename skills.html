@@ -113,6 +113,123 @@
     .skills-cat-heading:first-child { margin-top: 0; }
     @media(max-width:760px){ .skills-bars-wrap { grid-template-columns: 1fr; } }
 
+    /* PROJECTS GRID SECTION */
+    .projects-section {
+      padding-top: 60px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--teal);
+      box-shadow: 0 12px 30px rgba(79, 209, 197, 0.15);
+    }
+    .project-img-box {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: var(--surface-alt);
+      overflow: hidden;
+    }
+    .project-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover .project-img-box img {
+      transform: scale(1.05);
+    }
+
+    /* Hover Buttons Overlay */
+    .project-actions {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 15, 28, 0.75);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .project-card:hover .project-actions {
+      opacity: 1;
+    }
+    .action-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease;
+    }
+    .action-btn:hover {
+      transform: translateY(-2px);
+    }
+    .btn-demo {
+      background: var(--teal);
+      color: #0a0f1c;
+    }
+    .btn-github {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+    }
+
+    /* Card Body */
+    .project-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .project-body h3 {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .project-body p {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    /* Tech Stack Tags */
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .project-tags span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--teal-soft);
+      color: var(--teal);
+      border: 1px solid rgba(79, 209, 197, 0.2);
+    }
+
     /* CTA BAND */
     .cta-band {
       background: linear-gradient(120deg, var(--surface-alt), var(--bg-alt));
@@ -126,8 +243,6 @@
     .btn { font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; padding:14px 26px; border-radius:10px; display:inline-flex; align-items:center; gap:8px; transition: transform .2s, box-shadow .2s, background .2s; border:none; cursor:pointer; }
     .btn-primary { background: var(--gold); color:#1a1206; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(212,162,76,0.3); }
-    .btn-ghost { border: 1px solid var(--border-strong); color: var(--text); background: transparent; }
-    .btn-ghost:hover { background: var(--surface-alt); transform: translateY(-2px); }
 
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 70px 0 30px; background: var(--bg-alt); }
@@ -158,136 +273,6 @@
     .scroll-top:hover { box-shadow: 0 14px 32px rgba(79,209,197,0.5); transform: translateY(-2px); }
     .scroll-top svg { width:22px; height:22px; }
     @media(max-width:600px){ .scroll-top { right:18px; bottom:84px; width:44px; height:44px; } }
-    /* PROJECTS GRID SECTION */
-.projects-section {
-  padding-top: 60px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  margin-top: 30px;
-}
-
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--teal);
-  box-shadow: 0 12px 30px rgba(79, 209, 197, 0.15);
-}
-
-.project-img-box {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  background: var(--surface-alt);
-  overflow: hidden;
-}
-
-.project-img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.project-card:hover .project-img-box img {
-  transform: scale(1.05);
-}
-
-/* Hover Buttons Overlay */
-.project-actions {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 15, 28, 0.75);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-actions {
-  opacity: 1;
-}
-
-.action-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: transform 0.2s ease;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-demo {
-  background: var(--teal);
-  color: #0a0f1c;
-}
-
-.btn-github {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--text);
-  border: 1px solid var(--border-strong);
-}
-
-/* Card Body */
-.project-body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.project-body h3 {
-  font-size: 18px;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.project-body p {
-  font-size: 13.5px;
-  color: var(--text-dim);
-  line-height: 1.5;
-  margin-bottom: 18px;
-  flex-grow: 1;
-}
-
-/* Tech Stack Tags */
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.project-tags span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--teal-soft);
-  color: var(--teal);
-  border: 1px solid rgba(79, 209, 197, 0.2);
-}
   </style>
 </head>
 <body>
@@ -310,12 +295,14 @@
 </header>
 
 <main class="wrap">
+  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="eyebrow">Tech stack</div>
     <h1>Skills &amp; <span>tools I work with</span></h1>
     <p>A quick look at what I use to design, build, and ship projects — from frontend development to Python and creative tools.</p>
   </section>
 
+  <!-- SKILLS SECTION -->
   <section style="padding-top:0;">
     <div class="skill-cats">
       <span class="skill-cat-chip active">All Skills</span>
@@ -429,15 +416,7 @@
     </div>
   </section>
 
-  <section>
-    <div class="cta-band">
-      <h2>Interested in collaborating?</h2>
-      <p>Whether you need a sleek portfolio, custom frontend development, or social media strategy, let's connect.</p>
-      <div class="cta-buttons">
-        <a href="home.html#contact" class="btn btn-primary">Get In Touch</a>
-      </div>
-    </div>
-    <!-- FEATURED PROJECTS SECTION -->
+  <!-- FEATURED PROJECTS SECTION -->
   <section class="projects-section">
     <div class="eyebrow">Portfolio</div>
     <h2 class="section-title">Featured <span>Projects</span></h2>
@@ -445,10 +424,10 @@
 
     <div class="projects-grid">
 
-      <!-- Project 1 -->
+      <!-- Project 1: Coffee Heaven -->
       <div class="project-card">
         <div class="project-img-box">
-          <img src="project-showcase.png" alt="Coffee Heaven Web App">
+          <img src="profile.jpg" alt="Coffee Heaven Web App">
           <div class="project-actions">
             <a href="https://laibapafaftab-debug.github.io/Coffee-Heaven/" target="_blank" class="action-btn btn-demo">🔗 Live Demo</a>
             <a href="https://github.com/laibapafaftab-debug" target="_blank" class="action-btn btn-github">💻 GitHub</a>
@@ -465,7 +444,7 @@
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- Project 2: 2D Python Game -->
       <div class="project-card">
         <div class="project-img-box">
           <img src="project-showcase.png" alt="2D Car Dodging Game">
@@ -485,7 +464,7 @@
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Project 3: Developer Portfolio -->
       <div class="project-card">
         <div class="project-img-box">
           <img src="project-showcase.png" alt="Services & Portfolio Suite">
@@ -507,6 +486,16 @@
 
     </div>
   </section>
+
+  <!-- CTA BAND SECTION -->
+  <section>
+    <div class="cta-band">
+      <h2>Interested in collaborating?</h2>
+      <p>Whether you need a sleek portfolio, custom frontend development, or social media strategy, let's connect.</p>
+      <div class="cta-buttons">
+        <a href="home.html#contact" class="btn btn-primary">Get In Touch</a>
+      </div>
+    </div>
   </section>
 </main>
 
