@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Laiba Aftab</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #070c14;
+      background-image: radial-gradient(circle at 50% 20%, rgba(0, 210, 181, 0.05) 0%, transparent 60%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(7, 12, 20, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #00d2b5;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 10px #00d2b5;
+    }
+
+    .logo span {
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00d2b5;
+    }
+
+    .btn-start {
+      background: #eab308;
+      color: #0f172a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-start:hover {
+      background: #facc15;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .tab-container {
+      display: inline-flex;
+      background: #0d1726;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(0, 210, 181, 0.15), rgba(0, 210, 181, 0.05));
+      color: #00d2b5;
+      border: 1px solid rgba(0, 210, 181, 0.3);
+      box-shadow: 0 0 15px rgba(0, 210, 181, 0.1);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .skill-card {
+      background: #0b1524;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 30px 25px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 210, 181, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .skill-name {
+      color: #94a3b8;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(0, 210, 181, 0.08);
+      color: #00d2b5;
+      border: 1px solid rgba(0, 210, 181, 0.2);
+      letter-spacing: 0.3px;
+    }
+
+    .cta-banner {
+      background: linear-gradient(180deg, #0d1a2d 0%, #0a1322 100%);
+      border: 1px solid rgba(0, 210, 181, 0.15);
+      border-radius: 16px;
+      padding: 50px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .cta-description {
+      color: #94a3b8;
+      font-size: 1rem;
+      max-width: 580px;
+      margin: 0 auto 30px;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, #00d2b5, #00b39b);
+      color: #070c14;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 20px rgba(0, 210, 181, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 210, 181, 0.5);
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      background-color: #25d366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-btn svg {
+      width: 30px;
+      height: 30px;
+      fill: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      .cta-title {
+        font-size: 1.5rem;
+      }
+      .tab-container {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <a href="index.html" class="logo">
+      <span class="logo-dot"></span> Laiba <span>.dev</span>
+    </a>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="skills.html" class="active">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn-start">Start a project</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- Sub Navbar Tab Selector -->
+    <div class="tab-container">
+      <a href="education.html" class="tab-btn">🎓 Education</a>
+      <a href="skills.html" class="tab-btn active">🛠️ Tech Stack & Skills</a>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid">
+
+      <!-- Frontend -->
+      <div class="skill-card">
+        <div class="card-header">
+          <span class="card-icon">🌐</span>
+          <h2 class="card-title">Frontend & Web</h2>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">HTML5 & Semantic Markup</span>
+            <span class="badge">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">CSS3 / Flexbox & Grid</span>
+            <span class="badge">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">JavaScript (ES6+)</span>
+            <span class="badge">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Responsive UI Design</span>
+            <span class="badge">Proficient</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Python & Game Dev -->
+      <div class="skill-card">
+        <div class="card-header">
+          <span class="card-icon">🐍</span>
+          <h2 class="card-title">Python & Game Dev</h2>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">Python Programming</span>
+            <span class="badge">Proficient</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Pygame Engine</span>
+            <span class="badge">2D Dev</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">OOP & Architecture</span>
+            <span class="badge">Structured</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Debugging & Testing</span>
+            <span class="badge">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design & Social Media -->
+      <div class="skill-card">
+        <div class="card-header">
+          <span class="card-icon">🎨</span>
+          <h2 class="card-title">Design & Social Media</h2>
+        </div>
+        <div class="skill-list">
+          <div class="skill-item">
+            <span class="skill-name">Social Media Management</span>
+            <span class="badge">Strategy</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Graphic & Asset Design</span>
+            <span class="badge">Creative</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Visual Content Creation</span>
+            <span class="badge">Aesthetic</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Canva & Editing Tools</span>
+            <span class="badge">Expert</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Banner -->
+    <div class="cta-banner">
+      <h2 class="cta-title">Interested in collaborating?</h2>
+      <p class="cta-description">
+        Whether you need a sleek portfolio, custom frontend development, or social media strategy, let's connect.
+      </p>
+      <a href="index.html#contact" class="btn-cta">Get In Touch</a>
+    </div>
+
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/923248957840" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32">
+      <path d="M16 2a13 13 0 0 0-11 20L3 29l7.2-1.9A13 13 0 1 0 16 2zm0 24a11 11 0 0 1-5.6-1.5l-.4-.2-4.2 1.1 1.1-4.1-.3-.4A11 11 0 1 1 16 26zm6-8.2c-.3-.2-1.9-1-2.2-1.1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6 0a8 8 0 0 1-2.3-1.4 8.8 8.8 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5a.4.4 0 0 0 0-.4c0-.2-.7-1.7-1-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.8 6.4 6.4 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9 19 19 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.1 3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.5c-.1-.1-.4-.2-.7-.4z"/>
+    </svg>
+  </a>
+
+</body>
+</html>
