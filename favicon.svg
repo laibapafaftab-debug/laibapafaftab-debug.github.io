@@ -1,4 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#12151c"/>
-  <text x="16" y="21" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="#2f4cdb" text-anchor="middle">&lt;/&gt;</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a24c"/>
+      <stop offset="100%" stop-color="#4fd1c5"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0a0f1c"/>
+  <circle cx="12" cy="12" r="4" fill="#4fd1c5"/>
+  <text x="14" y="46" font-family="'Space Grotesk', 'Segoe UI', sans-serif" font-weight="700" font-size="34" fill="url(#favGrad)">L</text>
 </svg>
