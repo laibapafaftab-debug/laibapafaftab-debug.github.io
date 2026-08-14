@@ -11,6 +11,7 @@
   <meta property="og:description" content="Fast, responsive, conversion-focused websites and Python automation for growing businesses.">
   <meta property="og:type" content="website">
 
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -217,6 +218,22 @@
     .link-arrow svg { transition: transform .2s; }
     .link-arrow:hover svg { transform: translateX(4px); }
 
+    /* SKILLS PREVIEW */
+    .skills-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .skills-preview-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 26px; transition: transform .25s, border-color .25s, background .25s;
+    }
+    .skills-preview-card:hover { transform: translateY(-5px); border-color: var(--border-strong); background: var(--surface-alt); }
+    .skills-preview-icon {
+      width: 42px; height: 42px; border-radius: 10px; background: var(--teal-soft); color: var(--teal);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .skills-preview-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .skills-preview-card p { color: var(--text-dim); font-size: 14px; }
+    @media(max-width:900px){ .skills-preview-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:600px){ .skills-preview-grid { grid-template-columns: 1fr; } }
+
     /* ---------- PROCESS ---------- */
     .process-band { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
@@ -242,14 +259,33 @@
     }
     .project-card:hover { transform: translateY(-5px); border-color: var(--border-strong); }
     .project-thumb {
-      height: 150px; display: flex; align-items: center; justify-content: center;
+      height: 190px; display: flex; align-items: center; justify-content: center;
       font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-faint);
       background:
         repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 14px),
         linear-gradient(135deg, var(--surface-alt), var(--bg-alt));
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
     }
-    .project-body { padding: 22px 24px 26px; }
+    .project-thumb img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      transition: transform .3s;
+    }
+    .project-card:hover .project-thumb img { transform: scale(1.04); }
+    .project-thumb .thumb-label {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .project-thumb::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 70%;
+      background: linear-gradient(180deg, transparent, rgba(10,15,28,0.92) 78%);
+      pointer-events: none;
+    }
+    .project-actions {
+      position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2;
+      display: flex; gap: 10px;
+    }
+    .project-body { padding: 20px 24px 26px; }
     .project-tag {
       display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
       color: var(--gold); background: var(--gold-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 14px;
@@ -258,6 +294,17 @@
     .project-card p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
     .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tech-tags span { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-dim); border: 1px solid var(--border-strong); padding: 3px 9px; border-radius: 6px; }
+    .project-actions a {
+      flex: 1; text-align: center; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 13px;
+      padding: 9px 12px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+      backdrop-filter: blur(6px);
+    }
+    .project-actions a.live-demo { background: linear-gradient(95deg, var(--teal), var(--gold)); color: #0a0f1c; }
+    .project-actions a.live-demo:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79,209,197,0.35); }
+    .project-actions a.source { border: 1px solid rgba(255,255,255,0.35); color: var(--text); background: rgba(10,15,28,0.55); }
+    .project-actions a.source:hover { background: rgba(10,15,28,0.8); transform: translateY(-2px); }
+    .project-actions svg { width: 14px; height: 14px; }
     @media(max-width:900px){ .projects-grid { grid-template-columns: 1fr 1fr; } }
     @media(max-width:600px){ .projects-grid { grid-template-columns: 1fr; } }
 
@@ -503,7 +550,7 @@
       <a href="index.html#work">Work</a>
       <a href="index.html#pricing">Pricing</a>
       <a href="education.html">Education</a>
-      <li><a href="skills.html">Skills</a></li>
+      <a href="skills.html">Skills</a>
       <a href="index.html#contact">Contact</a>
     </nav>
     <a href="#contact" class="nav-cta">Start a project</a>
@@ -609,6 +656,31 @@
     <a href="https://www.linkedin.com/in/laiba-aftab-211705420/" class="link-arrow" target="_blank" rel="noopener noreferrer">Connect with me on LinkedIn <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </section>
 
+  <!-- SKILLS PREVIEW -->
+  <section id="skills-preview">
+    <div class="eyebrow">Tech stack</div>
+    <h2 class="section-title">Tools I build with</h2>
+    <p class="section-sub">A quick look at the frontend, Python, and design skills behind every project.</p>
+    <div class="skills-preview-grid">
+      <div class="skills-preview-card">
+        <div class="skills-preview-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>Frontend &amp; Web</h3>
+        <p>HTML5, CSS3, JavaScript (ES6+), responsive UI design.</p>
+      </div>
+      <div class="skills-preview-card">
+        <div class="skills-preview-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8a4 4 0 0 1 4 4v3H8a4 4 0 0 1-4-4 3 3 0 0 1 4-3Z"/><path d="M16 21H8a4 4 0 0 1-4-4v-3h12a4 4 0 0 1 4 4 3 3 0 0 1-4 3Z"/></svg></div>
+        <h3>Python &amp; Game Dev</h3>
+        <p>Python programming, Pygame, OOP, debugging &amp; testing.</p>
+      </div>
+      <div class="skills-preview-card">
+        <div class="skills-preview-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 14.5 3 21l2-6.5L14.5 4A2.1 2.1 0 0 1 17.5 7Z"/><path d="M13 6l5 5"/></svg></div>
+        <h3>Design &amp; Social Media</h3>
+        <p>Graphic design, visual content, Canva, social media strategy.</p>
+      </div>
+    </div>
+    <a href="skills.html" class="link-arrow" style="margin-top:36px;">See full skills breakdown <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
   <!-- PROCESS -->
   <section class="process-band" id="process">
     <div class="wrap">
@@ -647,7 +719,13 @@
     <p class="section-sub">A few examples of the kind of work I do.</p>
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-thumb"><img src="coffee-heaven.jpg" alt="Coffee Heaven"></div>
+        <div class="project-thumb">
+          <img src="coffee-heaven.jpg" alt="Salon booking website landing page banner" onerror="this.parentElement.innerHTML='&lt;div class=&quot;thumb-label&quot;&gt;salon-booking/&lt;/div&gt;'">
+          <div class="project-actions">
+            <a href="#" class="live-demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg> Live Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" rel="noopener noreferrer" class="source"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.523 2 12 2Z"/></svg> GitHub</a>
+          </div>
+        </div>
         <div class="project-body">
           <span class="project-tag">Local business</span>
           <h3>Salon booking website</h3>
@@ -656,7 +734,13 @@
         </div>
       </div>
       <div class="project-card">
-        <div class="project-thumb"><img src="social-campaigns.jpg" alt="Social Media Campaigns"></div>
+        <div class="project-thumb">
+          <img src="social-campaigns.jpg" alt="Consulting firm site landing page banner" onerror="this.parentElement.innerHTML='&lt;div class=&quot;thumb-label&quot;&gt;consulting-site/&lt;/div&gt;'">
+          <div class="project-actions">
+            <a href="#" class="live-demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg> Live Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" rel="noopener noreferrer" class="source"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.523 2 12 2Z"/></svg> GitHub</a>
+          </div>
+        </div>
         <div class="project-body">
           <span class="project-tag">International client</span>
           <h3>Consulting firm site</h3>
@@ -665,7 +749,13 @@
         </div>
       </div>
       <div class="project-card">
-        <div class="project-thumb"><img src="portfilo.jpg" alt="Portfolio"></div>
+        <div class="project-thumb">
+          <img src="portfilo.jpg" alt="Python game banner" onerror="this.parentElement.innerHTML='&lt;div class=&quot;thumb-label&quot;&gt;python-game/&lt;/div&gt;'">
+          <div class="project-actions">
+            <a href="#" class="live-demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg> Live Demo</a>
+            <a href="https://github.com/laibapafaftab-debug" target="_blank" rel="noopener noreferrer" class="source"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.523 2 12 2Z"/></svg> GitHub</a>
+          </div>
+        </div>
         <div class="project-body">
           <span class="project-tag">Python project</span>
           <h3>Python game</h3>
@@ -787,11 +877,9 @@
     <div class="eyebrow" style="justify-content:center;">Get in touch</div>
     <h2 class="section-title">Let's Work Together</h2>
     <p class="section-sub">Have a project in mind? Send me a message.</p>
-<div style="text-align: center; margin: 20px 0;">
-    <a href="https://www.fiverr.com/s/1qr5Ra9" target="_blank" rel="noopener noreferrer" style="background-color: #1dbf73; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 15px;">
-        💚 Order Directly on Fiverr
-    </a>
-</div>
+
+    <a href="https://www.fiverr.com/s/1qr5Ra9" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-bottom:32px; display:inline-flex;">💚 Order Directly on Fiverr</a>
+
     <form class="contact-form" action="https://formspree.io/f/xnpadpav" method="POST">
       <div>
         <label for="name">Name</label>
@@ -818,9 +906,9 @@
         <div class="logo"><span class="dot"></span>Laiba<span class="mono" style="color:var(--text-dim); font-weight:400;">.dev</span></div>
         <p>Web development studio specializing in fast, conversion-focused sites for small businesses — plus Python automation and tooling. Based in Pakistan, working with clients worldwide.</p>
         <div class="social-row">
-          <a href="https://www.linkedin.com/in/laiba-aftab-211705420/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">in</a>
-          <a href="https://github.com/laibapafaftab-debug" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">gh</a>
-          <a href="https://wa.me/923248957840" aria-label="WhatsApp Contact" target="_blank" rel="noopener noreferrer">wa</a>
+          <a href="https://www.linkedin.com/in/laiba-aftab-211705420/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V10.5H5.67v7.84h2.67zM7 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm11.34 8.84v-4.5c0-2.41-1.29-3.53-3.01-3.53-1.39 0-2.01.76-2.35 1.3v-1.11h-2.67c.04.75 0 7.84 0 7.84h2.67v-4.38c0-.23.02-.47.09-.64.19-.47.62-.96 1.35-.96.95 0 1.33.72 1.33 1.79v4.19h2.59z"/></svg></a>
+          <a href="https://github.com/laibapafaftab-debug" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.091-.647.35-1.088.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.021C22 6.484 17.523 2 12 2Z"/></svg></a>
+          <a href="https://wa.me/923248957840" aria-label="WhatsApp Contact" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.892.526 3.7 1.523 5.28L2 22l4.865-1.485A9.943 9.943 0 0 0 12.001 22C17.523 22 22 17.522 22 12S17.523 2 12.001 2zm0 18.09a8.07 8.07 0 0 1-4.383-1.283l-.314-.19-3.09.943.951-3.04-.204-.324A8.09 8.09 0 1 1 20.09 12a8.098 8.098 0 0 1-8.089 8.09z"/></svg></a>
         </div>
       </div>
       <div class="footer-col">
@@ -830,7 +918,6 @@
           <li><a href="#process">Process</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="skills.html">Skills</a></li>
         </ul>
       </div>
       <div class="footer-col">
