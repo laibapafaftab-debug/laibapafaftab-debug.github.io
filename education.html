@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education & Skills — Laiba Aftab</title>
+  <title>Education — Laiba Aftab</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <meta property="og:title" content="Education & Skills — Laiba Aftab">
-  <meta property="og:description" content="Academic background, tech stack, and platforms for web and Python development.">
+  <meta property="og:title" content="Education — Laiba Aftab">
+  <meta property="og:description" content="Academic background for web and Python development.">
   <meta property="og:type" content="website">
-  <meta name="description" content="Academic background, tech stack, and platforms for web and Python development — Laiba Aftab.">
+  <meta name="description" content="Academic background — Laiba Aftab.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +55,6 @@
       z-index: 0;
     }
 
-    /* Background Canvas */
     #bg-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -176,7 +175,7 @@
       max-width: 620px;
     }
 
-    /* Tabs Bar */
+    /* Tabs Bar (page switcher: Education / Skills) */
     .tabs-row { margin: 36px 0 40px; }
     .tabs {
       display: inline-flex;
@@ -197,6 +196,7 @@
       border: none;
       background: transparent;
       transition: all .25s ease;
+      display: inline-block;
     }
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active {
@@ -204,11 +204,6 @@
       color: #0a0f1c;
       box-shadow: 0 4px 14px rgba(79, 209, 197, 0.3);
     }
-
-    /* Tab Panels */
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; animation: fadeIn .4s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     /* Cards Grid */
     .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -248,25 +243,6 @@
     .pills-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-faint); margin-bottom: 10px; font-weight: 600; }
     .pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .pill { font-size: 13px; background: var(--bg); border: 1px solid var(--border); color: var(--text-dim); padding: 5px 12px; border-radius: 6px; }
-
-    /* Skills Grid */
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    @media(max-width: 960px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
-
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: transform .25s, border-color .25s, background .25s;
-    }
-    .skill-card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--surface-hover); }
-    .skill-icon { font-size: 28px; margin-bottom: 14px; display: inline-block; }
-    .skill-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 19px; margin-bottom: 12px; }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .skill-item { display: flex; align-items: center; justify-content: space-between; font-size: 14px; color: var(--text-dim); }
-    .skill-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--teal); background: var(--teal-glow); padding: 2px 8px; border-radius: 4px; }
 
     /* CTA Section */
     .cta-band {
@@ -353,85 +329,83 @@
 
 <main class="wrap">
   <section class="page-hero">
-    <span class="hero-tag">Academic & Skills Overview</span>
-    <h1>Education & Technical Proficiency</h1>
-    <p>A detailed view of my educational journey, specialization areas, technologies, and creative toolkit.</p>
+    <span class="hero-tag">Academic Overview</span>
+    <h1>Education &amp; Background</h1>
+    <p>A detailed view of my educational journey and specialization areas. For technical skills and tools, see the Skills page.</p>
   </section>
 
-  <!-- Navigation Tabs -->
+  <!-- Page switcher: Education / Skills -->
   <div class="tabs-row">
     <div class="tabs">
-  <a href="education.html" class="tab-btn active">🎓 Education</a>
-  <a href="skills.html" class="tab-btn">🛠️ Tech Stack & Skills</a>
-</div>
+      <a href="education.html" class="tab-btn active">Education</a>
+      <a href="skills.html" class="tab-btn">Tech Stack &amp; Skills</a>
+    </div>
   </div>
 
-  <!-- TAB 1: EDUCATION -->
-  <div class="tab-panel active" id="tab-education" role="tabpanel" aria-labelledby="btn-education">
-    <div class="cards-grid">
+  <!-- EDUCATION CARDS -->
+  <div class="cards-grid">
 
-      <!-- Matric Card -->
-      <div class="edu-card">
-        <div class="card-header">
-          <div>
-            <h3>Matriculation (Science)</h3>
-            <div class="institution">Secondary School Certificate</div>
-          </div>
-          <span class="card-badge">2019 — 2021</span>
+    <!-- Matric Card -->
+    <div class="edu-card">
+      <div class="card-header">
+        <div>
+          <h3>Matriculation (Science)</h3>
+          <div class="institution">Secondary School Certificate</div>
         </div>
-        <p>Built the foundation in core science and mathematics subjects, developing early problem-solving and analytical skills that led into computer science studies.</p>
-
-        <div class="pills-title">Core Subjects</div>
-        <div class="pills">
-          <span class="pill">Mathematics</span>
-          <span class="pill">Physics</span>
-          <span class="pill">Chemistry</span>
-          <span class="pill">Computer Science</span>
-        </div>
+        <span class="card-badge">2019 — 2021</span>
       </div>
+      <p>Built the foundation in core science and mathematics subjects, developing early problem-solving and analytical skills that led into computer science studies.</p>
 
-      <!-- Intermediate Card -->
-      <div class="edu-card">
-        <div class="card-header">
-          <div>
-            <h3>Intermediate (Computer Science / ICS)</h3>
-            <div class="institution">Higher Secondary Education</div>
-          </div>
-          <span class="card-badge">2021 — 2023</span>
-        </div>
-        <p>Built a solid foundation in computer fundamentals, algorithmic logic, mathematics, and introductory programming concepts that sparked a passion for frontend design and development.</p>
-
-        <div class="pills-title">Core Subjects</div>
-        <div class="pills">
-          <span class="pill">Computer Science</span>
-          <span class="pill">Mathematics</span>
-          <span class="pill">Physics</span>
-          <span class="pill">Problem Solving</span>
-        </div>
+      <div class="pills-title">Core Subjects</div>
+      <div class="pills">
+        <span class="pill">Mathematics</span>
+        <span class="pill">Physics</span>
+        <span class="pill">Chemistry</span>
+        <span class="pill">Computer Science</span>
       </div>
-
-      <!-- BSCS Card -->
-      <div class="edu-card">
-        <div class="card-header">
-          <div>
-            <h3>Bachelor of Science in Computer Science (BSCS)</h3>
-            <div class="institution">University Level Degree Program</div>
-          </div>
-          <span class="card-badge">2021 — 2025</span>
-        </div>
-        <p>Focused on software engineering principles, object-oriented programming, database management, and modern web application design. Actively applied logic to build interactive GUI applications and custom scripts.</p>
-
-        <div class="pills-title">Key Coursework & Highlights</div>
-        <div class="pills">
-          <span class="pill">Object Oriented Programming</span>
-          <span class="pill">Web Engineering</span>
-          <span class="pill">Data Structures</span>
-          <span class="pill">Database Systems</span>
-          <span class="pill">Python & Pygame</span>
-        </div>
-      </div>
-
     </div>
+
+    <!-- Intermediate Card -->
+    <div class="edu-card">
+      <div class="card-header">
+        <div>
+          <h3>Intermediate (Computer Science / ICS)</h3>
+          <div class="institution">Higher Secondary Education</div>
+        </div>
+        <span class="card-badge">2021 — 2023</span>
+      </div>
+      <p>Built a solid foundation in computer fundamentals, algorithmic logic, mathematics, and introductory programming concepts that sparked a passion for frontend design and development.</p>
+
+      <div class="pills-title">Core Subjects</div>
+      <div class="pills">
+        <span class="pill">Computer Science</span>
+        <span class="pill">Mathematics</span>
+        <span class="pill">Physics</span>
+        <span class="pill">Problem Solving</span>
+      </div>
+    </div>
+
+    <!-- BSCS Card -->
+    <div class="edu-card">
+      <div class="card-header">
+        <div>
+          <h3>Bachelor of Science in Computer Science (BSCS)</h3>
+          <div class="institution">University Level Degree Program</div>
+        </div>
+        <span class="card-badge">2021 — 2025</span>
+      </div>
+      <p>Focused on software engineering principles, object-oriented programming, database management, and modern web application design. Actively applied logic to build interactive GUI applications and custom scripts.</p>
+
+      <div class="pills-title">Key Coursework &amp; Highlights</div>
+      <div class="pills">
+        <span class="pill">Object Oriented Programming</span>
+        <span class="pill">Web Engineering</span>
+        <span class="pill">Data Structures</span>
+        <span class="pill">Database Systems</span>
+        <span class="pill">Python &amp; Pygame</span>
+      </div>
+    </div>
+
   </div>
 
   <!-- Call To Action -->
@@ -505,31 +479,6 @@
       initParticles();
     });
   })();
-
-  /* Accessible Tab Switching */
-  var tabBtns = document.querySelectorAll('.tab-btn');
-  var tabPanels = document.querySelectorAll('.tab-panel');
-
-  tabBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      tabBtns.forEach(function (b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      tabPanels.forEach(function (p) {
-        p.classList.remove('active');
-      });
-
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      var targetId = 'tab-' + btn.dataset.tab;
-      var targetPanel = document.getElementById(targetId);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-      }
-    });
-  });
 
   /* Scroll to top button */
   var scrollBtn = document.getElementById('scrollTopBtn');
