@@ -871,6 +871,63 @@ button { font: inherit; }
     font-size: 16px;
     cursor: pointer;
 }
+/* Premium Animations */
+
+.reveal-ready{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all .7s ease;
+}
+
+.reveal-ready.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+.service-card,
+.price-card,
+.project-card,
+.work-card{
+  transition:.3s ease;
+}
+
+
+.service-card:hover,
+.price-card:hover,
+.project-card:hover,
+.work-card:hover{
+  transform:translateY(-8px);
+}
+
+
+.btn{
+  transition:.3s ease;
+}
+
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(47,76,219,.25);
+}
+
+
+.browser-mock{
+  animation:floating 5s infinite ease-in-out;
+}
+
+
+@keyframes floating{
+
+0%,100%{
+ transform:translateY(0);
+}
+
+50%{
+ transform:translateY(-10px);
+}
+
+}
 
 .contact button:hover {
     opacity: 0.8;
