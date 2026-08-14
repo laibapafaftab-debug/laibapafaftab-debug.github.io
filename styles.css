@@ -928,6 +928,67 @@ button { font: inherit; }
 }
 
 }
+/* Scroll Reveal Animation */
+
+.reveal-ready {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease;
+}
+
+.reveal-ready.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Card Hover Animation */
+
+.service-card,
+.project-card,
+.price-card,
+.work-card {
+    transition: 0.3s ease;
+}
+
+
+.service-card:hover,
+.project-card:hover,
+.price-card:hover,
+.work-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Button Animation */
+
+.btn {
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* Hero Floating */
+
+.browser-mock {
+    animation: float 5s ease-in-out infinite;
+}
+
+
+@keyframes float {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
 
 .contact button:hover {
     opacity: 0.8;
