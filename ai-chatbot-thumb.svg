@@ -1,0 +1,56 @@
+<svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1526"/>
+      <stop offset="100%" stop-color="#101c30"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4fd1c5"/>
+      <stop offset="100%" stop-color="#d4a24c"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#bg)"/>
+
+  <!-- header bar -->
+  <rect x="0" y="0" width="640" height="56" fill="#152238"/>
+  <circle cx="40" cy="28" r="16" fill="url(#accent)"/>
+  <text x="40" y="33" font-family="Arial" font-size="16" text-anchor="middle">🤖</text>
+  <text x="66" y="24" font-family="Arial, sans-serif" font-size="15" fill="#eef1f6" font-weight="600">Property Assistant</text>
+  <circle cx="70" cy="40" r="3" fill="#4fd1c5"/>
+  <text x="80" y="43" font-family="Arial, sans-serif" font-size="11" fill="#4fd1c5">Online now</text>
+
+  <!-- bot bubble -->
+  <rect x="24" y="80" width="360" height="54" rx="14" fill="#152238" stroke="#232f45"/>
+  <text x="40" y="102" font-family="Arial, sans-serif" font-size="13" fill="#eef1f6">👋 Hi! Looking for a property,</text>
+  <text x="40" y="120" font-family="Arial, sans-serif" font-size="13" fill="#eef1f6">pricing, or want to book a visit?</text>
+
+  <!-- quick reply chips -->
+  <rect x="24" y="146" width="150" height="30" rx="15" fill="#152238" stroke="#2a3752"/>
+  <text x="99" y="165" font-family="Arial, sans-serif" font-size="11.5" fill="#eef1f6" text-anchor="middle">🏠 Available properties</text>
+
+  <rect x="184" y="146" width="100" height="30" rx="15" fill="#152238" stroke="#2a3752"/>
+  <text x="234" y="165" font-family="Arial, sans-serif" font-size="11.5" fill="#eef1f6" text-anchor="middle">💰 Pricing</text>
+
+  <!-- user bubble -->
+  <rect x="380" y="190" width="236" height="44" rx="14" fill="#1b3530" stroke="#2f5c50"/>
+  <text x="396" y="217" font-family="Arial, sans-serif" font-size="13" fill="#eef1f6">Show available properties</text>
+
+  <!-- bot reply bubble -->
+  <rect x="24" y="248" width="420" height="70" rx="14" fill="#152238" stroke="#232f45"/>
+  <text x="40" y="270" font-family="Arial, sans-serif" font-size="12.5" fill="#c7cede">We have 3 listings live: a 2-bed</text>
+  <text x="40" y="288" font-family="Arial, sans-serif" font-size="12.5" fill="#c7cede">apartment in DHA, a house in</text>
+  <text x="40" y="306" font-family="Arial, sans-serif" font-size="12.5" fill="#c7cede">Bahria Town, and a studio nearby.</text>
+
+  <!-- typing indicator -->
+  <rect x="24" y="332" width="70" height="34" rx="14" fill="#152238" stroke="#232f45"/>
+  <circle cx="48" cy="349" r="3.5" fill="#5c6780"/>
+  <circle cx="60" cy="349" r="3.5" fill="#5c6780"/>
+  <circle cx="72" cy="349" r="3.5" fill="#5c6780"/>
+
+  <!-- input bar -->
+  <rect x="0" y="366" width="640" height="34" fill="#152238"/>
+  <rect x="16" y="374" width="560" height="18" rx="9" fill="#0a0f1c"/>
+  <text x="30" y="387" font-family="Arial, sans-serif" font-size="11" fill="#5c6780">Type a message…</text>
+  <circle cx="612" cy="383" r="14" fill="#4fd1c5"/>
+  <text x="612" y="388" font-family="Arial" font-size="13" text-anchor="middle" fill="#06231f">➤</text>
+</svg>
