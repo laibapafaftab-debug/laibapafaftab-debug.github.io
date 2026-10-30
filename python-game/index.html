@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Python Game Demo | Laiba Aftab</title>
+<meta name="description" content="A game built in Python with Pygame. Watch the gameplay demo and view the source code on GitHub.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#15122b; --panel:#1f1b3d; --ink:#f3f0ff; --muted:#b4aedb; --line:#352f63; --hot:#ffb938; --hot-ink:#241500;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --sans:"DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--sans);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hot);outline-offset:2px;border-radius:6px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.back{display:inline-block;margin:22px 0 0;color:var(--muted);text-decoration:none;font-size:.95rem}
+.back:hover{color:var(--ink)}
+h1{font:700 clamp(2.3rem,6vw,3.8rem)/1.05 var(--display);margin:18px 0 12px;letter-spacing:-.02em}
+.lead{color:var(--muted);font-size:1.1rem;max-width:56ch;margin:0 0 28px}
+.player{background:#000;border:1px solid var(--line);border-radius:16px;overflow:hidden;aspect-ratio:16/9;display:grid;place-items:center}
+.player video{width:100%;height:100%;display:block;background:#000}
+.fallback{padding:24px;text-align:center;color:var(--muted);max-width:44ch}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0}
+.btn{display:inline-block;text-decoration:none;font:600 1rem var(--sans);padding:13px 22px;border-radius:12px;border:1px solid var(--line);color:var(--ink);background:transparent}
+.btn.main{background:var(--hot);border-color:var(--hot);color:var(--hot-ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:56px 0 0;padding-top:40px;border-top:1px solid var(--line)}
+@media(max-width:720px){.grid{grid-template-columns:1fr;gap:32px}}
+h2{font:700 1.5rem/1.2 var(--display);margin:0 0 14px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 20px}
+dt{color:var(--muted)}
+dd{margin:0;font-weight:500}
+ul.learn{margin:0;padding-left:1.1em;color:var(--muted)}
+ul.learn li{margin-bottom:8px}
+.run{margin:40px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.run h2{margin-bottom:10px}
+pre{margin:0;overflow-x:auto;font:500 .92rem/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink)}
+.copy{margin-top:12px;font:500 .9rem var(--sans);background:transparent;color:var(--hot);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer}
+footer{margin:56px 0 0;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- EDIT: change this to your portfolio link -->
+  <a class="back" href="https://laiba-aftab-portfolio.netlify.app/#work">Back to portfolio</a>
+
+  <main>
+    <!-- EDIT: replace with your game's real name -->
+    <h1>My Python Game</h1>
+    <p class="lead">A game I built in Python with Pygame to practise logic, problem-solving and clean code. Watch the gameplay below, then read the source on GitHub.</p>
+
+    <div class="player">
+      <!-- EDIT: save your screen recording as game-demo.mp4 in this same folder -->
+      <video controls preload="metadata" playsinline>
+        <source src="game-demo.mp4" type="video/mp4">
+        <p class="fallback">The gameplay video could not load. Make sure game-demo.mp4 is in the same folder as this page.</p>
+      </video>
+    </div>
+
+    <div class="actions">
+      <!-- EDIT: replace with the exact repository link of this game -->
+      <a class="btn main" href="https://github.com/laibapafaftab-debug" target="_blank" rel="noopener">View code on GitHub</a>
+      <a class="btn" href="https://wa.me/923248957840?text=Hi%20Laiba%2C%20I%20saw%20your%20Python%20game%20and%20would%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Discuss a project</a>
+    </div>
+
+    <div class="grid">
+      <section>
+        <h2>Project details</h2>
+        <dl>
+          <dt>Language</dt><dd>Python 3</dd>
+          <dt>Library</dt><dd>Pygame</dd>
+          <dt>Type</dt><dd>Desktop game</dd>
+          <dt>Role</dt><dd>Design, code and testing</dd>
+        </dl>
+      </section>
+      <section>
+        <h2>What this shows</h2>
+        <ul class="learn">
+          <li>Object-oriented design for players, enemies and items</li>
+          <li>A game loop with input, updates and drawing</li>
+          <li>Collision detection and scoring logic</li>
+          <li>Debugging and testing until it ran smoothly</li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="run">
+      <h2>Run it on your computer</h2>
+      <pre id="cmd">pip install pygame
+git clone https://github.com/laibapafaftab-debug/YOUR-REPO-NAME
+cd YOUR-REPO-NAME
+python main.py</pre>
+      <button class="copy" id="copy" type="button">Copy commands</button>
+    </section>
+  </main>
+
+  <footer>© 2026 Laiba Aftab. Built with Python, then shown here as a video because Pygame runs on the desktop, not in the browser.</footer>
+</div>
+<script>
+document.getElementById("copy").onclick=function(){
+  var b=this,t=document.getElementById("cmd").textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent="Copied"},function(){b.textContent="Select the text and copy it"})}
+  catch(e){b.textContent="Select the text and copy it"}
+};
+</script>
+</body>
+</html>
