@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noor Beauty Studio | Book your appointment in Lahore</title>
+<meta name="description" content="Book a haircut, facial, colour or bridal makeup at Noor Beauty Studio in Lahore. Pick a service, a day and a time in under a minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf5f7; --surface:#ffffff; --ink:#2b1630; --muted:#6d5a72; --line:#ead9e1;
+  --rose:#b3295f; --rose-ink:#ffffff; --soft:#f4dfe8; --ok:#2f7a4f; --off:#b9a8bd;
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:"Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#1a1020; --surface:#26172d; --ink:#f7e8ef; --muted:#c3adc9; --line:#3d2a46;
+    --rose:#ee6a9f; --rose-ink:#2a0f1c; --soft:#3a2242; --ok:#6fcf97; --off:#6b5673;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#1a1020; --surface:#26172d; --ink:#f7e8ef; --muted:#c3adc9; --line:#3d2a46;
+  --rose:#ee6a9f; --rose-ink:#2a0f1c; --soft:#3a2242; --ok:#6fcf97; --off:#6b5673;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font:600 1.6rem/1 var(--serif);letter-spacing:.01em;text-decoration:none}
+.logo span{color:var(--rose)}
+.top nav{display:flex;gap:22px;font-size:.95rem}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--ink)}
+@media(max-width:560px){.top nav a:not(.keep){display:none}}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;padding:28px 0 72px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:32px;padding-bottom:48px}}
+h1{font:600 clamp(2.6rem,6vw,4.4rem)/1.02 var(--serif);margin:12px 0 18px;letter-spacing:-.01em}
+.lead{font-size:1.1rem;color:var(--muted);max-width:46ch;margin:0 0 24px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0;padding:0;list-style:none;color:var(--muted);font-size:.95rem}
+.facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rose);margin-right:8px}
+
+/* booking card */
+.book{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 18px 40px -24px rgba(43,22,48,.35)}
+.book h2{font:600 1.7rem/1.1 var(--serif);margin:0 0 4px}
+.book .sub{margin:0 0 18px;color:var(--muted);font-size:.92rem}
+.step{margin:0 0 18px;padding:0;border:0}
+.step legend{font-weight:600;font-size:.95rem;margin-bottom:8px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:.92rem;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--rose)}
+.chip[aria-pressed="true"]{background:var(--rose);color:var(--rose-ink);border-color:var(--rose)}
+.chip:disabled{color:var(--off);text-decoration:line-through;cursor:not-allowed;border-style:dashed}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{display:flex;flex-direction:column;align-items:center;padding:8px 0;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.day small{color:var(--muted);font-size:.72rem}
+.day b{font-weight:600;font-size:1.05rem}
+.day[aria-pressed="true"]{background:var(--rose);border-color:var(--rose);color:var(--rose-ink)}
+.day[aria-pressed="true"] small{color:inherit}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.fields{grid-template-columns:1fr}}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+input[type=text],input[type=tel]{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.summary{margin:16px 0 12px;padding:12px 14px;background:var(--soft);border-radius:12px;font-size:.93rem;min-height:3.2em}
+.go{width:100%;appearance:none;border:0;background:var(--rose);color:var(--rose-ink);font:600 1rem var(--sans);padding:14px;border-radius:12px;cursor:pointer}
+.go:disabled{opacity:.45;cursor:not-allowed}
+.err{color:#c0392b;font-size:.85rem;margin:8px 0 0;min-height:1.2em}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .err{color:#ff8a7a}}
+.done{text-align:left}
+.done .tick{width:48px;height:48px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:1.5rem;margin-bottom:12px}
+.done h2{margin-bottom:8px}
+.done dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:16px 0;font-size:.95rem}
+.done dt{color:var(--muted)}
+.done dd{margin:0;font-weight:500}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.btn2{flex:1;min-width:150px;text-align:center;text-decoration:none;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 .95rem var(--sans);padding:12px;border-radius:12px;cursor:pointer}
+.btn2.main{background:var(--rose);border-color:var(--rose);color:var(--rose-ink)}
+
+/* sections */
+section.block{padding:64px 0;border-top:1px solid var(--line)}
+h2.title{font:600 clamp(2rem,4vw,2.8rem)/1.1 var(--serif);margin:0 0 8px}
+.intro{color:var(--muted);margin:0 0 32px;max-width:52ch}
+.menu{list-style:none;margin:0;padding:0}
+.menu li{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:18px 0;border-bottom:1px dashed var(--line)}
+.menu h3{margin:0;font:600 1.35rem/1.2 var(--serif)}
+.menu p{margin:0;color:var(--muted);font-size:.93rem;grid-column:1}
+.menu .price{grid-row:1/3;grid-column:2;text-align:right;font-weight:600}
+.menu .price small{display:block;color:var(--muted);font-weight:400}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:700px){.visit{grid-template-columns:1fr;gap:24px}}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:8px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;color:var(--muted)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Noor<span>.</span> Beauty Studio</a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#visit">Visit us</a>
+      <a class="keep" href="#book">Book now</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="hero">
+    <div>
+      <h1>Book your chair in under a minute.</h1>
+      <p class="lead">Hair, skin and bridal makeup in Gulberg, Lahore. Choose a service, pick a day, and we’ll hold your slot.</p>
+      <ul class="facts">
+        <li>Open daily, 11 am to 8 pm</li>
+        <li>Female-only team</li>
+        <li>Bridal trials by appointment</li>
+      </ul>
+    </div>
+
+    <div class="book" id="book" aria-live="polite">
+      <div id="flow">
+        <h2>Reserve a slot</h2>
+        <p class="sub">Free to book. Pay at the salon.</p>
+
+        <fieldset class="step"><legend>1. Service</legend><div class="chips" id="services-chips"></div></fieldset>
+        <fieldset class="step"><legend>2. Day</legend><div class="days" id="days"></div></fieldset>
+        <fieldset class="step"><legend>3. Time</legend><div class="chips" id="times"></div></fieldset>
+        <fieldset class="step" style="margin-bottom:0"><legend>4. Your details</legend>
+          <div class="fields">
+            <div><label for="nm">Name</label><input id="nm" type="text" autocomplete="name" placeholder="Ayesha"></div>
+            <div><label for="ph">WhatsApp number</label><input id="ph" type="tel" autocomplete="tel" inputmode="tel" placeholder="03XX XXXXXXX"></div>
+          </div>
+        </fieldset>
+
+        <div class="summary" id="summary">Choose a service, day and time to see your booking summary.</div>
+        <button class="go" id="go" type="button" disabled>Confirm booking</button>
+        <p class="err" id="err" role="alert"></p>
+      </div>
+
+      <div class="done" id="done" hidden>
+        <div class="tick" aria-hidden="true">✓</div>
+        <h2 id="done-title">You’re booked</h2>
+        <p class="sub">Show this reference when you arrive.</p>
+        <dl id="done-list"></dl>
+        <div class="row">
+          <a class="btn2 main" id="wa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
+          <button class="btn2" id="again" type="button">Book another</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" id="services">
+    <h2 class="title">Services and prices</h2>
+    <p class="intro">Fixed prices in PKR. Bridal pricing depends on the package, and we’ll confirm it at your trial.</p>
+    <ul class="menu" id="menu"></ul>
+  </section>
+
+  <section class="block" id="visit">
+    <div class="visit">
+      <div>
+        <h2 class="title">Find us</h2>
+        <p class="intro">Noor Beauty Studio<br>Shop 12, Main Boulevard, Gulberg III<br>Lahore, Pakistan</p>
+        <p class="intro" style="margin:0">Parking is available behind the building. Walk-ins are welcome when a chair is free.</p>
+      </div>
+      <div>
+        <h2 class="title">Opening hours</h2>
+        <table class="hours">
+          <tr><td>Monday to Thursday</td><td>11 am to 8 pm</td></tr>
+          <tr><td>Friday</td><td>2 pm to 9 pm</td></tr>
+          <tr><td>Saturday and Sunday</td><td>11 am to 9 pm</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer>© 2026 Noor Beauty Studio. This is a demo website built by Laiba Aftab (Laiba.dev), and bookings here are not sent to a real salon.</footer>
+</div>
+
+<script>
+(function(){
+  var SERVICES=[
+    {n:"Haircut and styling",d:"Wash, cut and blow-dry with a stylist.",p:1500,m:45},
+    {n:"Hair colour",d:"Global colour, highlights or root touch-up.",p:5500,m:120},
+    {n:"Signature facial",d:"Deep cleanse, mask and massage for your skin type.",p:3000,m:60},
+    {n:"Mani-pedi",d:"Nail shaping, cuticle care and polish for hands and feet.",p:2500,m:75},
+    {n:"Threading and waxing",d:"Eyebrows, upper lip and full-face options.",p:800,m:30},
+    {n:"Bridal makeup",d:"Trial plus wedding-day makeup and hair.",p:25000,m:180,from:true}
+  ];
+  var TIMES=["11:00","11:30","12:00","12:30","13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
+  var DAYS=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var st={s:-1,d:-1,t:null};
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(n){return "PKR "+n.toLocaleString("en-PK")};
+  var dates=[];
+  for(var i=1;i<=7;i++){var x=new Date();x.setHours(0,0,0,0);x.setDate(x.getDate()+i);dates.push(x)}
+  var dayLabel=function(x){return DAYS[x.getDay()]+" "+x.getDate()+" "+MONTHS[x.getMonth()]};
+  var to12=function(t){var h=+t.split(":")[0],m=t.split(":")[1];return (h>12?h-12:h)+":"+m+(h>=12?" pm":" am")};
+  var taken=function(di,ti){return (di*7+ti*3+di*ti)%4===0};
+
+  // menu list
+  $("menu").innerHTML=SERVICES.map(function(s){
+    return '<li><h3>'+s.n+'</h3><p>'+s.d+'</p><div class="price">'+(s.from?"From ":"")+fmt(s.p)+'<small>about '+(s.m>=60?(s.m/60)+" hr":s.m+" min")+'</small></div></li>';
+  }).join("");
+
+  function mk(tag,cls,html){var e=document.createElement(tag);e.className=cls;e.innerHTML=html;e.type="button";return e}
+
+  // services chips
+  SERVICES.forEach(function(s,i){
+    var b=mk("button","chip",s.n);b.setAttribute("aria-pressed","false");
+    b.onclick=function(){st.s=i;refresh()};$("services-chips").appendChild(b);
+  });
+  // day buttons
+  dates.forEach(function(x,i){
+    var b=mk("button","day",'<small>'+DAYS[x.getDay()]+'</small><b>'+x.getDate()+'</b><small>'+MONTHS[x.getMonth()]+'</small>');
+    b.setAttribute("aria-pressed","false");b.setAttribute("aria-label",dayLabel(x));
+    b.onclick=function(){st.d=i;st.t=null;refresh()};$("days").appendChild(b);
+  });
+
+  function drawTimes(){
+    var box=$("times");box.innerHTML="";
+    if(st.d<0){box.innerHTML='<span style="color:var(--muted);font-size:.9rem">Pick a day first to see open times.</span>';return}
+    TIMES.forEach(function(t,i){
+      var b=mk("button","chip",to12(t));var off=taken(st.d,i);
+      b.disabled=off;b.setAttribute("aria-pressed",String(st.t===t));
+      if(off)b.setAttribute("aria-label",to12(t)+", already taken");
+      b.onclick=function(){st.t=t;refresh()};box.appendChild(b);
+    });
+  }
+
+  function valid(){
+    var name=$("nm").value.trim(),ph=$("ph").value.replace(/[\s\-()]/g,"");
+    return st.s>-1&&st.d>-1&&st.t&&name.length>1&&/^(\+?92|0)3\d{9}$/.test(ph);
+  }
+  function refresh(){
+    Array.prototype.forEach.call($("services-chips").children,function(b,i){b.setAttribute("aria-pressed",String(i===st.s))});
+    Array.prototype.forEach.call($("days").children,function(b,i){b.setAttribute("aria-pressed",String(i===st.d))});
+    drawTimes();
+    var sum=$("summary");
+    if(st.s>-1&&st.d>-1&&st.t){
+      var s=SERVICES[st.s];
+      sum.textContent=s.n+" on "+dayLabel(dates[st.d])+" at "+to12(st.t)+". "+(s.from?"From ":"")+fmt(s.p)+", paid at the salon.";
+    }else{
+      var need=[];if(st.s<0)need.push("a service");if(st.d<0)need.push("a day");else if(!st.t)need.push("a time");
+      sum.textContent="Still to choose: "+need.join(", ")+".";
+    }
+    $("go").disabled=!valid();
+  }
+
+  ["nm","ph"].forEach(function(id){$(id).addEventListener("input",function(){$("err").textContent="";refresh()})});
+
+  $("go").onclick=function(){
+    if(!valid()){$("err").textContent="Enter your name and a Pakistani mobile number, like 0300 1234567.";return}
+    var s=SERVICES[st.s],name=$("nm").value.trim(),ref="NB-"+(1000+Math.floor(Math.random()*9000));
+    var when=dayLabel(dates[st.d])+", "+to12(st.t);
+    $("done-title").textContent="You’re booked, "+name.split(" ")[0];
+    var rows=[["Reference",ref],["Service",s.n],["When",when],["Price",(s.from?"From ":"")+fmt(s.p)+" (pay at the salon)"]];
+    var dl=$("done-list");dl.innerHTML="";
+    rows.forEach(function(r){var a=document.createElement("dt"),b=document.createElement("dd");a.textContent=r[0];b.textContent=r[1];dl.appendChild(a);dl.appendChild(b)});
+    var msg="Booking "+ref+" at Noor Beauty Studio: "+s.n+", "+when+".";
+    $("wa").href="https://wa.me/?text="+encodeURIComponent(msg);
+    $("flow").hidden=true;$("done").hidden=false;$("done").scrollIntoView({block:"nearest"});
+  };
+  $("again").onclick=function(){
+    st={s:-1,d:-1,t:null};$("nm").value="";$("ph").value="";
+    $("done").hidden=true;$("flow").hidden=false;refresh();
+  };
+  refresh();
+})();
+</script>
+</body>
+</html>
