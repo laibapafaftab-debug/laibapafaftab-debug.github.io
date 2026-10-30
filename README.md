@@ -2,7 +2,7 @@
 
 Personal portfolio of **Laiba Aftab**, a web developer and Python automation builder based in Pakistan, working with clients worldwide.
 
-**Live site:** https://laiba-aftab-portfolio.netlify.app
+**Live site:** https://laiba-portfoilo.netlify.app/
 
 ![Status](https://img.shields.io/badge/status-available%20for%20work-brightgreen)
 ![Built with](https://img.shields.io/badge/built%20with-HTML%20%7C%20CSS%20%7C%20JavaScript-blue)
