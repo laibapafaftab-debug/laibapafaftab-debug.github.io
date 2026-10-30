@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Lead Capture Chatbot Demo — Laiba Aftab</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Live demo: AI-powered lead capture chatbot for real estate & clinic websites, built by Laiba Aftab.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0a0f1c;
+    --bg-alt: #0d1526;
+    --surface: #101c30;
+    --surface-alt: #152238;
+    --text: #eef1f6;
+    --text-dim: #8b96ac;
+    --text-faint: #5c6780;
+    --gold: #d4a24c;
+    --gold-soft: rgba(212, 162, 76, 0.12);
+    --teal: #4fd1c5;
+    --teal-soft: rgba(79, 209, 197, 0.12);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 30px 16px;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -5%, rgba(79,209,197,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 5% 15%, rgba(212,162,76,0.08), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .demo-wrap { position: relative; z-index: 1; width: 100%; max-width: 460px; }
+  .demo-badge {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--teal-soft);
+    color: var(--teal); border: 1px solid rgba(79,209,197,0.25); border-radius: 999px;
+    padding: 6px 14px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.4px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .demo-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin-bottom: 6px; }
+  .demo-sub { color: var(--text-dim); font-size: 14px; margin-bottom: 20px; }
+
+  .chat-card {
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: 18px;
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  }
+  .chat-header {
+    display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+    background: var(--surface-alt); border-bottom: 1px solid var(--border);
+  }
+  .chat-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--gold));
+    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .chat-header-text { flex: 1; }
+  .chat-header-name { font-weight: 600; font-size: 14.5px; }
+  .chat-header-status { font-size: 12px; color: var(--teal); display: flex; align-items: center; gap: 5px; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
+
+  .chat-body {
+    height: 420px; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 12px;
+    scroll-behavior: smooth;
+  }
+  .chat-body::-webkit-scrollbar { width: 5px; }
+  .chat-body::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 10px; }
+
+  .msg { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.5; animation: pop 0.25s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .msg.bot { background: var(--surface-alt); border: 1px solid var(--border); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.user { background: linear-gradient(135deg, rgba(79,209,197,0.18), rgba(212,162,76,0.12)); border: 1px solid rgba(79,209,197,0.25); align-self: flex-end; border-bottom-right-radius: 4px; }
+
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .qr-btn {
+    background: var(--surface-alt); border: 1px solid var(--border-strong); color: var(--text);
+    font-size: 12.5px; padding: 7px 12px; border-radius: 999px; cursor: pointer;
+    transition: all 0.15s ease; font-family: inherit;
+  }
+  .qr-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  .typing { display: flex; gap: 4px; padding: 12px 14px; align-self: flex-start; }
+  .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-faint); animation: blink 1.2s infinite ease-in-out; }
+  .typing span:nth-child(2) { animation-delay: 0.15s; }
+  .typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes blink { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+  .chat-input-row { display: flex; gap: 8px; padding: 14px; border-top: 1px solid var(--border); background: var(--surface-alt); }
+  .chat-input {
+    flex: 1; background: var(--bg); border: 1px solid var(--border-strong); color: var(--text);
+    border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: inherit; outline: none;
+  }
+  .chat-input:focus { border-color: var(--teal); }
+  .chat-send {
+    background: linear-gradient(135deg, var(--teal), #3bb8ac); border: none; color: #06231f;
+    width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .chat-send:hover { filter: brightness(1.08); }
+
+  .footer-note { text-align: center; color: var(--text-faint); font-size: 12px; margin-top: 16px; }
+  .footer-note a { color: var(--teal); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="demo-wrap">
+  <div class="demo-badge">● Live Demo</div>
+  <h1 class="demo-title">AI Lead Capture Chatbot</h1>
+  <p class="demo-sub">A 24/7 assistant built for real estate & clinic websites — answers FAQs and captures leads automatically.</p>
+
+  <div class="chat-card">
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-header-text">
+        <div class="chat-header-name">Property Assistant</div>
+        <div class="chat-header-status"><span class="status-dot"></span> Online now</div>
+      </div>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">👋 Hi! I'm here to help with property listings, bookings, or pricing. What are you looking for today?</div>
+      <div class="quick-replies" id="quickReplies">
+        <button class="qr-btn" data-msg="Show available properties">🏠 Available properties</button>
+        <button class="qr-btn" data-msg="What are your prices?">💰 Pricing</button>
+        <button class="qr-btn" data-msg="I want to book a visit">📅 Book a visit</button>
+        <button class="qr-btn" data-msg="Talk to a human">🙋 Talk to a human</button>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Type a message…" autocomplete="off">
+      <button class="chat-send" id="chatSend">➤</button>
+    </div>
+  </div>
+
+  <p class="footer-note">Built with HTML, CSS &amp; JS by <a href="about.html">Laiba Aftab</a> — Next.js Developer &amp; AI Automation Specialist</p>
+</div>
+
+<script>
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+let leadStage = null; // tracks if we're mid lead-capture flow
+let leadData = {};
+
+const responses = [
+  { keys: ['propert', 'listing', 'house', 'flat', 'apartment', 'available'],
+    reply: "We currently have 3 listings live: a 2-bed apartment in DHA (PKR 45,000/mo), a family house in Bahria Town, and a studio near Gulberg. Want me to send details for one of these to your WhatsApp?" },
+  { keys: ['price', 'pricing', 'cost', 'how much', 'rate'],
+    reply: "Pricing depends on the property type and location — apartments start around PKR 35,000/mo, houses from PKR 80,000/mo. I can get you an exact quote if you tell me the area you're interested in." },
+  { keys: ['book', 'visit', 'appointment', 'schedule', 'tour', 'viewing'],
+    reply: "Great, I can set that up! What day works best for a visit — this weekend or next week?" },
+  { keys: ['human', 'agent', 'person', 'call me', 'representative'],
+    reply: "Sure — I'll connect you with our team right away. Could you share your name and phone number so someone can reach out?" },
+  { keys: ['hi', 'hello', 'hey', 'salam', 'assalam'],
+    reply: "Hello! Great to hear from you 👋 Are you looking to rent, buy, or just browsing for now?" },
+  { keys: ['thank', 'thanks', 'shukriya'],
+    reply: "You're welcome! Let me know if there's anything else I can help you find." },
+];
+
+const leadPrompts = ["What's your name?", "And your phone number or WhatsApp, so we can follow up?"];
+
+function scrollToBottom() { chatBody.scrollTop = chatBody.scrollHeight; }
+
+function addMsg(text, who) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.textContent = text;
+  chatBody.appendChild(div);
+  scrollToBottom();
+}
+
+function showTyping() {
+  const t = document.createElement('div');
+  t.className = 'typing';
+  t.id = 'typingIndicator';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(t);
+  scrollToBottom();
+}
+
+function removeTyping() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+function matchResponse(text) {
+  const lower = text.toLowerCase();
+  for (const r of responses) {
+    if (r.keys.some(k => lower.includes(k))) return r.reply;
+  }
+  return "Got it! I've noted that down. Could I grab your name and number so our team can follow up with the full details?";
+}
+
+function handleUserMessage(text) {
+  if (!text.trim()) return;
+  addMsg(text, 'user');
+  chatInput.value = '';
+  const qr = document.getElementById('quickReplies');
+  if (qr) qr.remove();
+
+  showTyping();
+  setTimeout(() => {
+    removeTyping();
+    if (leadStage === 0) {
+      leadData.name = text;
+      addMsg(`Thanks, ${text}! ${leadPrompts[1]}`, 'bot');
+      leadStage = 1;
+    } else if (leadStage === 1) {
+      leadData.phone = text;
+      addMsg(`Perfect — you're all set ✅ Our team will reach out to ${leadData.name} at ${leadData.phone} within 24 hours. Anything else I can help with?`, 'bot');
+      leadStage = null;
+    } else {
+      const reply = matchResponse(text);
+      addMsg(reply, 'bot');
+      if (/name|number|phone|whatsapp/i.test(reply) && leadStage === null) {
+        leadStage = 0;
+      }
+    }
+  }, 700 + Math.random() * 500);
+}
+
+chatSend.addEventListener('click', () => handleUserMessage(chatInput.value));
+chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserMessage(chatInput.value); });
+
+document.querySelectorAll('.qr-btn').forEach(btn => {
+  btn.addEventListener('click', () => handleUserMessage(btn.dataset.msg));
+});
+</script>
+
+</body>
+</html>
