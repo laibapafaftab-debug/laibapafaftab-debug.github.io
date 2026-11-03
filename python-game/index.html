@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,21 +43,24 @@ ul.learn li{margin-bottom:8px}
 .run h2{margin-bottom:10px}
 pre{margin:0;overflow-x:auto;font:500 .92rem/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink)}
 .copy{margin-top:12px;font:500 .9rem var(--sans);background:transparent;color:var(--hot);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer}
+.source{margin:40px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 20px}
+.source summary{cursor:pointer;font:700 1.25rem/1.2 var(--display);padding:16px 0;list-style-position:inside}
+.source .note{color:var(--muted);margin:0 0 14px;font-size:.95rem}
+.source pre{max-height:520px;overflow:auto;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:10px;margin-bottom:20px}
 footer{margin:56px 0 0;padding:24px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <!-- EDIT: change this to your portfolio link -->
-  <a class="back" href="https://laiba-aftab-portfolio.netlify.app/#work">Back to portfolio</a>
+  <a class="back" href="https://laiba-portfoilo.netlify.app/#work">Back to portfolio</a>
 
   <main>
     <!-- EDIT: replace with your game's real name -->
     <h1>My Python Game</h1>
-    <p class="lead">A game I built in Python with Pygame to practise logic, problem-solving and clean code. Watch the gameplay below, then read the source on GitHub.</p>
+    <p class="lead">A game I built in Python with Pygame to practise logic, problem-solving and clean code. Watch the gameplay below, then read the source code.</p>
 
     <div class="player">
-      <!-- EDIT: save your screen recording as game-demo.mp4 in this same folder -->
+      <!-- Save your own gameplay recording as game-demo.mp4 in this same folder -->
       <video controls preload="metadata" playsinline>
         <source src="game-demo.mp4" type="video/mp4">
         <p class="fallback">The gameplay video could not load. Make sure game-demo.mp4 is in the same folder as this page.</p>
@@ -90,8 +94,20 @@ footer{margin:56px 0 0;padding:24px 0 40px;border-top:1px solid var(--line);colo
       </section>
     </div>
 
+    <!-- GAME SOURCE CODE: paste your main.py between the <code> tags below.
+         Before pasting, replace & with &amp;  < with &lt;  and  > with &gt;  or the page will break.
+         (Easier: send me your code and I will add it for you.) -->
+    <details class="source">
+      <summary>Read the game code (main.py)</summary>
+      <p class="note">The full source of the game. Copy it, install Pygame and run it on your computer.</p>
+      <pre><code id="gamecode"># Paste your game code here
+</code></pre>
+      <button class="copy" id="copycode" type="button">Copy code</button>
+    </details>
+
     <section class="run">
       <h2>Run it on your computer</h2>
+      <!-- EDIT: replace YOUR-REPO-NAME with your game's repository name -->
       <pre id="cmd">pip install pygame
 git clone https://github.com/laibapafaftab-debug/YOUR-REPO-NAME
 cd YOUR-REPO-NAME
@@ -103,11 +119,15 @@ python main.py</pre>
   <footer>© 2026 Laiba Aftab. Built with Python, then shown here as a video because Pygame runs on the desktop, not in the browser.</footer>
 </div>
 <script>
-document.getElementById("copy").onclick=function(){
-  var b=this,t=document.getElementById("cmd").textContent;
-  try{navigator.clipboard.writeText(t).then(function(){b.textContent="Copied"},function(){b.textContent="Select the text and copy it"})}
-  catch(e){b.textContent="Select the text and copy it"}
-};
+function wireCopy(btnId, srcId, doneText){
+  document.getElementById(btnId).onclick=function(){
+    var b=this,t=document.getElementById(srcId).textContent,old=b.textContent;
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent=doneText;setTimeout(function(){b.textContent=old},1800)},function(){b.textContent="Select the text and copy it"})}
+    catch(e){b.textContent="Select the text and copy it"}
+  };
+}
+wireCopy("copy","cmd","Copied");
+wireCopy("copycode","gamecode","Copied");
 </script>
 </body>
 </html>
